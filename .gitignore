@@ -3,3 +3,6 @@ __pycache__/
 
 # Test Program
 Tests.py
+
+# Temp Files
+Temp/
