@@ -15,18 +15,17 @@ class Iteration(object):
                 break
             else:
                 count += 1
+            lastXList = self._xList[:]
             for i in range(self._len):
                 tempSum = 0
-                temp = 0
                 for j in range(self._len):
                     if i != j:
-                        tempSum += self._augMatrix[i][j] * self._xList[j]
+                        tempSum += self._augMatrix[i][j] * lastXList[j]
                     else:
                         continue
-                temp = self._xList[i]
                 self._xList[i] = (self._augMatrix[i][-1] - tempSum) / \
                     self._augMatrix[i][i]
-                deltaList += (self._xList[i] - temp)**2
+                deltaList += (self._xList[i] - lastXList[i])**2
             deltaList = pow(deltaList, 0.5)
         return self._xList
 
