@@ -5,7 +5,7 @@ class Iteration(object):
         self._len = len(self._augMatrix)
         self._xList = self._initXList(xList)
 
-    def jacobiIteration(self, num=100):
+    def Jacobi(self, num=100):
         count = 0
         deltaList = 1
         while deltaList > 0.00001:
