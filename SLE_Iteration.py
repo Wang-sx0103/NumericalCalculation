@@ -5,10 +5,10 @@ class Iteration(object):
         self._len = len(self._augMatrix)
         self._xList = self._initXList(xList)
 
-    def Jacobi(self, num=100):
+    def Jacobi(self, num=100, delta=0.00001):
         count = 0
         deltaList = 1
-        while deltaList > 0.00001:
+        while deltaList > delta:
             deltaList = 0
             if count == num:
                 self._xList
@@ -30,10 +30,10 @@ class Iteration(object):
             self._outStream(count)
         return self._xList
 
-    def GaussSeidel(self, num=100):
+    def GaussSeidel(self, num=100, delta=0.00001):
         count = 0
         deltaList = 1
-        while deltaList > 0.00001:
+        while deltaList > delta:
             deltaList = 0
             if count == num:
                 self._xList
@@ -56,10 +56,10 @@ class Iteration(object):
             self._outStream(count)
         return self._xList
 
-    def SOR(self, num=100, omega=1):
+    def SOR(self, num=100, delta=0.00001, omega=1):
         count = 0
         deltaList = 1
-        while deltaList > 0.00001:
+        while deltaList > delta:
             deltaList = 0
             if count == num:
                 self._xList
