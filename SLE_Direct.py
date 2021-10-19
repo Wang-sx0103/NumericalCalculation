@@ -135,8 +135,35 @@ class TriDecomposition(object):
         self.__xList = [0 for i in range(self.__len)]
         self.__yList = [0 for i in range(self.__len)]
 
-    def doolittle(self):
-        pass
+    def DirTriDecomposition(self):
+        self.__yList[0] = self.__augMatrix[0][-1]
+        for i in range(self.__len):
+            tempSumY = 0
+            for j in range(i, self.__len):
+                tempSumU = 0
+                tempSumL = 0
+                for k in range(0, i):
+                    tempSumU += self.__LMatrix[i][k]*self.__UMatrix[k][j]
+                    if j == self.__len - 1:
+                        continue
+                    else:
+                        tempSumL += self.__LMatrix[j+1][k]*self.__UMatrix[k][i]
+                self.__UMatrix[i][j] = self.__augMatrix[i][j] - tempSumU
+                if j == self.__len - 1:
+                    continue
+                else:
+                    self.__LMatrix[j+1][i] = (self.__augMatrix[j+1][i] -
+                                              tempSumL) / self.__UMatrix[i][i]
+            for m in range(i):
+                tempSumY += self.__LMatrix[i][m]*self.__yList[m]
+            self.__yList[i] = self.__augMatrix[i][-1] - tempSumY
+        for p in range(self.__len-1, -1, -1):
+            tempSumX = 0
+            for q in range(p+1, self.__len):
+                tempSumX += self.__UMatrix[p][q]*self.__xList[q]
+            self.__xList[p] = (self.__yList[p] - tempSumX) / \
+                self.__UMatrix[p][p]
+        return self.__xList
 
     def chase(self):
         self.__UMatrix[0][0] = self.__augMatrix[0][0]
