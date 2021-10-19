@@ -203,5 +203,36 @@ class TriDecomposition(object):
 
 
 class SquareRoot(object):
-    def __init__(self):
+    def __init__(self, augMatrix):
+        self.__augMatrix = augMatrix
+        self.__len = len(self.__augMatrix)
+        self.__LMatrix = [[0] * self.__len for i in range(self.__len)]
+        self.__xList = [0 for i in range(self.__len)]
+        self.__yList = [0 for i in range(self.__len)]
+
+    def CholeskyDecomposition(self):
+        for i in range(self.__len):
+            tempSumL = 0
+            tempSumY = 0
+            for m in range(i):
+                tempSumL += self.__LMatrix[i][m]**2
+                tempSumY += self.__LMatrix[i][m]*self.__yList[m]
+            self.__LMatrix[i][i] = pow(self.__augMatrix[i][i] -
+                                       tempSumL, 0.5)
+            self.__yList[i] = (self.__augMatrix[i][-1] - tempSumY) / \
+                self.__LMatrix[i][i]
+            for j in range(i+1, self.__len):
+                tempSumL = 0
+                for n in range(i):
+                    tempSumL += self.__LMatrix[j][n]*self.__LMatrix[i][n]
+                self.__LMatrix[j][i] = (self.__augMatrix[j][i] -
+                                        tempSumL) / self.__LMatrix[i][i]
+        for k in range(self.__len-1, -1, -1):
+            tempSumX = 0
+            for p in range(k+1, self.__len):
+                tempSumX += self.__LMatrix[p][k]*self.__xList[p]
+            self.__xList[k] = (self.__yList[k] - tempSumX)/self.__LMatrix[k][k]
+        return self.__xList
+
+    def LDLT(self):
         pass
