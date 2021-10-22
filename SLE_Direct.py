@@ -235,4 +235,33 @@ class SquareRoot(object):
         return self.__xList
 
     def LDLT(self):
-        pass
+        d = self._initd()
+        self._initLMatrix()
+        for i in range(self.__len):
+            tempSumd = 0
+            tempSumY = 0
+            for m in range(i):
+                tempSumd += self.__LMatrix[i][m]**2*d[m]
+                tempSumY += self.__LMatrix[i][m]*self.__yList[m]
+            d[i] = self.__augMatrix[i][i] - tempSumd
+            self.__yList[i] = self.__augMatrix[i][-1] - tempSumY
+            for j in range(i+1, self.__len):
+                tempSumL = 0
+                for n in range(i):
+                    tempSumL += self.__LMatrix[j][n]*d[n]*self.__LMatrix[i][n]
+                self.__LMatrix[j][i] = (self.__augMatrix[j][i]-tempSumL) / d[i]
+        for k in range(self.__len-1, -1, -1):
+            tempSumX = 0
+            for p in range(k+1, self.__len):
+                tempSumX += self.__LMatrix[p][k]*self.__xList[p]
+            self.__xList[k] = self.__yList[k]/d[k] - tempSumX
+        return self.__xList
+
+    def _initd(self):
+        return [0 for i in range(self.__len)]
+
+    def _initLMatrix(self):
+        for i in range(self.__len):
+            for j in range(self.__len):
+                if i == j:
+                    self.__LMatrix[i][j] = 1
