@@ -2,266 +2,266 @@
 
 class ClassGE(object):
     def __init__(self, augMatrix):
-        self.__augMatrix = augMatrix
-        self.__len = len(self.__augMatrix)
-        self.__xIndex = []
-        self.__ininXIndex()
-        self.__xList = [0 for i in range(self.__len)]
+        self._augMatrix = augMatrix
+        self._len = len(self._augMatrix)
+        self._xIndex = []
+        self._ininXIndex()
+        self._xList = [0 for i in range(self._len)]
 
 # 直接使用高斯消元法
 
     def gauss(self):
-        for k in range(self.__len):
-            for i in range(k, self.__len-1):
-                if round(self.__augMatrix[k][k], 5) == 0.00000:
+        for k in range(self._len):
+            for i in range(k, self._len-1):
+                if round(self._augMatrix[k][k], 5) == 0.00000:
                     return "主元素存在为0的情况," + \
                         "请更换为其它消元法!"
-                ratio = self.__augMatrix[i+1][k]/self.__augMatrix[k][k]
-                for j in range(k, self.__len+1):
-                    self.__augMatrix[i+1][j] = self.__augMatrix[i+1][j] - \
-                        ratio * self.__augMatrix[k][j]
-        if round(self.__augMatrix[self.__len-1][self.__len-1], 5) == 0.00000:
+                ratio = self._augMatrix[i+1][k]/self._augMatrix[k][k]
+                for j in range(k, self._len+1):
+                    self._augMatrix[i+1][j] = self._augMatrix[i+1][j] - \
+                        ratio * self._augMatrix[k][j]
+        if round(self._augMatrix[self._len-1][self._len-1], 5) == 0.00000:
             return "线性方程组无解！"
-        self.__xList[-1] = self.__augMatrix[self.__len-1][-1] / \
-            self.__augMatrix[self.__len-1][self.__len-1]
-        for i in range(self.__len-2, -1, -1):
+        self._xList[-1] = self._augMatrix[self._len-1][-1] / \
+            self._augMatrix[self._len-1][self._len-1]
+        for i in range(self._len-2, -1, -1):
             sum = 0
-            for j in range(i + 1, self.__len):
-                sum += self.__augMatrix[i][j]*self.__xList[j]
-            self.__xList[i] = (self.__augMatrix[i][-1] - sum) / \
-                self.__augMatrix[i][i]
-        return self.__xList
+            for j in range(i + 1, self._len):
+                sum += self._augMatrix[i][j]*self._xList[j]
+            self._xList[i] = (self._augMatrix[i][-1] - sum) / \
+                self._augMatrix[i][i]
+        return self._xList
 
 # 列主元素高斯消元法
 
     def orderEliminateGauss(self):
-        for k in range(self.__len):
-            self.__changeOrder(k)
-            for i in range(k, self.__len-1):
-                if round(self.__augMatrix[k][k], 5) == 0.00000:
+        for k in range(self._len):
+            self._changeOrder(k)
+            for i in range(k, self._len-1):
+                if round(self._augMatrix[k][k], 5) == 0.00000:
                     return "主元素存在为0的情况," + \
                         "请更换为全主元素法!"
-                ratio = self.__augMatrix[i+1][k]/self.__augMatrix[k][k]
-                for j in range(k, self.__len+1):
-                    self.__augMatrix[i+1][j] = self.__augMatrix[i+1][j] - \
-                        ratio * self.__augMatrix[k][j]
-        if round(self.__augMatrix[self.__len-1][self.__len-1], 5) == 0.00000:
+                ratio = self._augMatrix[i+1][k]/self._augMatrix[k][k]
+                for j in range(k, self._len+1):
+                    self._augMatrix[i+1][j] = self._augMatrix[i+1][j] - \
+                        ratio * self._augMatrix[k][j]
+        if round(self._augMatrix[self._len-1][self._len-1], 5) == 0.00000:
             return "线性方程组无解！"
-        self.__xList[-1] = self.__augMatrix[self.__len-1][-1] / \
-            self.__augMatrix[self.__len-1][self.__len-1]
-        for i in range(self.__len-2, -1, -1):
+        self._xList[-1] = self._augMatrix[self._len-1][-1] / \
+            self._augMatrix[self._len-1][self._len-1]
+        for i in range(self._len-2, -1, -1):
             sum = 0
-            for j in range(i + 1, self.__len):
-                sum += self.__augMatrix[i][j]*self.__xList[j]
-            self.__xList[i] = (self.__augMatrix[i][-1] - sum) / \
-                self.__augMatrix[i][i]
-        return self.__xList
+            for j in range(i + 1, self._len):
+                sum += self._augMatrix[i][j]*self._xList[j]
+            self._xList[i] = (self._augMatrix[i][-1] - sum) / \
+                self._augMatrix[i][i]
+        return self._xList
 
 # 全主元素法
 
     def completeEliminateGauss(self):
-        for k in range(self.__len):
-            self.__allChangeOrder(k)
-            for i in range(k, self.__len-1):
-                if round(self.__augMatrix[k][k], 5) == 0.00000:
+        for k in range(self._len):
+            self._allChangeOrder(k)
+            for i in range(k, self._len-1):
+                if round(self._augMatrix[k][k], 5) == 0.00000:
                     return "线性方程组无解！"
-                ratio = self.__augMatrix[i+1][k]/self.__augMatrix[k][k]
-                for j in range(k, self.__len+1):
-                    self.__augMatrix[i+1][j] = self.__augMatrix[i+1][j] - \
-                        ratio * self.__augMatrix[k][j]
-        if round(self.__augMatrix[self.__len-1][self.__len-1], 5) == 0.00000:
+                ratio = self._augMatrix[i+1][k]/self._augMatrix[k][k]
+                for j in range(k, self._len+1):
+                    self._augMatrix[i+1][j] = self._augMatrix[i+1][j] - \
+                        ratio * self._augMatrix[k][j]
+        if round(self._augMatrix[self._len-1][self._len-1], 5) == 0.00000:
             return "线性方程组无解！"
-        self.__xList[-1] = self.__augMatrix[self.__len-1][-1] / \
-            self.__augMatrix[self.__len-1][self.__len-1]
-        for i in range(self.__len-2, -1, -1):
+        self._xList[-1] = self._augMatrix[self._len-1][-1] / \
+            self._augMatrix[self._len-1][self._len-1]
+        for i in range(self._len-2, -1, -1):
             sum = 0
-            for j in range(i + 1, self.__len):
-                sum += self.__augMatrix[i][j]*self.__xList[j]
-            self.__xList[i] = (self.__augMatrix[i][-1] - sum) / \
-                self.__augMatrix[i][i]
-        return self.__changeXList()
+            for j in range(i + 1, self._len):
+                sum += self._augMatrix[i][j]*self._xList[j]
+            self._xList[i] = (self._augMatrix[i][-1] - sum) / \
+                self._augMatrix[i][i]
+        return self._changeXList()
 
-    def __changeOrder(self, column):
+    def _changeOrder(self, column):
         temp = []
-        for i in range(column, self.__len):
-            temp.append(abs(self.__augMatrix[i][column]))
+        for i in range(column, self._len):
+            temp.append(abs(self._augMatrix[i][column]))
         maxColumn = temp.index(max(temp)) + column
-        self.__augMatrix[column], self.__augMatrix[maxColumn] = \
-            self.__augMatrix[maxColumn], self.__augMatrix[column]
+        self._augMatrix[column], self._augMatrix[maxColumn] = \
+            self._augMatrix[maxColumn], self._augMatrix[column]
 
-    def __allChangeOrder(self, column):
+    def _allChangeOrder(self, column):
         max = 0
         rowMax = 0         # 最大值的行索引
         listMax = 0        # 最大值的列索引
-        for i in range(column, self.__len):
-            for j in range(column, self.__len):
-                if abs(self.__augMatrix[i][j]) > max:
-                    max = abs(self.__augMatrix[i][j])
+        for i in range(column, self._len):
+            for j in range(column, self._len):
+                if abs(self._augMatrix[i][j]) > max:
+                    max = abs(self._augMatrix[i][j])
                     rowMax = i
                     listMax = j
-                temp = round(self.__augMatrix[-1][-2])
-                if column == (self.__len-1) and (temp == 0.00000):
+                temp = round(self._augMatrix[-1][-2])
+                if column == (self._len-1) and (temp == 0.00000):
                     rowMax = column
                     listMax = column
-        self.__augMatrix[column], self.__augMatrix[rowMax] = \
-            self.__augMatrix[rowMax], self.__augMatrix[column]
-        for k in range(self.__len):
-            self.__augMatrix[k][listMax], self.__augMatrix[k][column] = \
-                self.__augMatrix[k][column], self.__augMatrix[k][listMax]
-        self.__xIndex[listMax], self.__xIndex[column] = \
-            self.__xIndex[column], self.__xIndex[listMax]
+        self._augMatrix[column], self._augMatrix[rowMax] = \
+            self._augMatrix[rowMax], self._augMatrix[column]
+        for k in range(self._len):
+            self._augMatrix[k][listMax], self._augMatrix[k][column] = \
+                self._augMatrix[k][column], self._augMatrix[k][listMax]
+        self._xIndex[listMax], self._xIndex[column] = \
+            self._xIndex[column], self._xIndex[listMax]
 
-    def __ininXIndex(self):
-        for index in range(self.__len):
-            self.__xIndex.append(index)
+    def _ininXIndex(self):
+        for index in range(self._len):
+            self._xIndex.append(index)
 
-    def __changeXList(self):
+    def _changeXList(self):
         changedXList = []
-        for i in range(len(self.__xList)):
-            changedXList.append(self.__xList[self.__xIndex[i]])
+        for i in range(len(self._xList)):
+            changedXList.append(self._xList[self._xIndex[i]])
         return changedXList
 
 
 class TriDecomposition(object):
 
     def __init__(self, augMatrix):
-        self.__augMatrix = augMatrix
-        self.__len = len(self.__augMatrix)
+        self._augMatrix = augMatrix
+        self._len = len(self._augMatrix)
         # self.__ininXIndex()
-        self.__LMatrix = [[0] * self.__len for i in range(self.__len)]
-        self.__UMatrix = [[0] * self.__len for i in range(self.__len)]
-        self.__initLMatrix()
-        self.__initUMatrix()
-        self.__xList = [0 for i in range(self.__len)]
-        self.__yList = [0 for i in range(self.__len)]
+        self._LMatrix = [[0] * self._len for i in range(self._len)]
+        self._UMatrix = [[0] * self._len for i in range(self._len)]
+        self._initLMatrix()
+        self._initUMatrix()
+        self._xList = [0 for i in range(self._len)]
+        self._yList = [0 for i in range(self._len)]
 
     def DirTriDecomposition(self):
-        self.__yList[0] = self.__augMatrix[0][-1]
-        for i in range(self.__len):
+        self._yList[0] = self._augMatrix[0][-1]
+        for i in range(self._len):
             tempSumY = 0
-            for j in range(i, self.__len):
+            for j in range(i, self._len):
                 tempSumU = 0
                 tempSumL = 0
                 for k in range(0, i):
-                    tempSumU += self.__LMatrix[i][k]*self.__UMatrix[k][j]
-                    if j == self.__len - 1:
+                    tempSumU += self._LMatrix[i][k]*self._UMatrix[k][j]
+                    if j == self._len - 1:
                         continue
                     else:
-                        tempSumL += self.__LMatrix[j+1][k]*self.__UMatrix[k][i]
-                self.__UMatrix[i][j] = self.__augMatrix[i][j] - tempSumU
-                if j == self.__len - 1:
+                        tempSumL += self._LMatrix[j+1][k]*self._UMatrix[k][i]
+                self._UMatrix[i][j] = self._augMatrix[i][j] - tempSumU
+                if j == self._len - 1:
                     continue
                 else:
-                    self.__LMatrix[j+1][i] = (self.__augMatrix[j+1][i] -
-                                              tempSumL) / self.__UMatrix[i][i]
+                    self._LMatrix[j+1][i] = (self._augMatrix[j+1][i] -
+                                             tempSumL) / self._UMatrix[i][i]
             for m in range(i):
-                tempSumY += self.__LMatrix[i][m]*self.__yList[m]
-            self.__yList[i] = self.__augMatrix[i][-1] - tempSumY
-        for p in range(self.__len-1, -1, -1):
+                tempSumY += self._LMatrix[i][m]*self._yList[m]
+            self._yList[i] = self._augMatrix[i][-1] - tempSumY
+        for p in range(self._len-1, -1, -1):
             tempSumX = 0
-            for q in range(p+1, self.__len):
-                tempSumX += self.__UMatrix[p][q]*self.__xList[q]
-            self.__xList[p] = (self.__yList[p] - tempSumX) / \
-                self.__UMatrix[p][p]
-        return self.__xList
+            for q in range(p+1, self._len):
+                tempSumX += self._UMatrix[p][q]*self._xList[q]
+            self._xList[p] = (self._yList[p] - tempSumX) / \
+                self._UMatrix[p][p]
+        return self._xList
 
     def chase(self):
-        self.__UMatrix[0][0] = self.__augMatrix[0][0]
-        self.__yList[0] = self.__augMatrix[0][-1]
-        for i in range(1, self.__len):
-            for j in range(self.__len):
+        self._UMatrix[0][0] = self._augMatrix[0][0]
+        self._yList[0] = self._augMatrix[0][-1]
+        for i in range(1, self._len):
+            for j in range(self._len):
                 if (i - 1) == j:
-                    if round(self.__UMatrix[i-1][i-1], 5) == 0.00000:
+                    if round(self._UMatrix[i-1][i-1], 5) == 0.00000:
                         return "不可用追赶法！"
-                    self.__LMatrix[i][j] = self.__augMatrix[i][j] / \
-                        self.__UMatrix[i-1][i-1]
-                    self.__UMatrix[i][j+1] = self.__augMatrix[i][j+1] - \
-                        self.__UMatrix[i-1][j+1]*self.__LMatrix[i][j]
-                    self.__yList[i] = self.__augMatrix[i][-1] - \
-                        self.__LMatrix[i][j]*self.__yList[i-1]
+                    self._LMatrix[i][j] = self._augMatrix[i][j] / \
+                        self._UMatrix[i-1][i-1]
+                    self._UMatrix[i][j+1] = self._augMatrix[i][j+1] - \
+                        self._UMatrix[i-1][j+1]*self._LMatrix[i][j]
+                    self._yList[i] = self._augMatrix[i][-1] - \
+                        self._LMatrix[i][j]*self._yList[i-1]
                     break
-        self.__xList[-1] = self.__yList[-1]/self.__UMatrix[-1][-1]
-        for i in range(self.__len - 2, -1, -1):
-            self.__xList[i] = (self.__yList[i] - self.__UMatrix[i][i+1] *
-                               self.__xList[i+1]) / self.__UMatrix[i][i]
-        return self.__xList
+        self._xList[-1] = self._yList[-1]/self._UMatrix[-1][-1]
+        for i in range(self._len - 2, -1, -1):
+            self._xList[i] = (self._yList[i] - self._UMatrix[i][i+1] *
+                              self._xList[i+1]) / self._UMatrix[i][i]
+        return self._xList
 
-    def __initLMatrix(self):
-        for i in range(self.__len):
-            for j in range(self.__len):
+    def _initLMatrix(self):
+        for i in range(self._len):
+            for j in range(self._len):
                 if i == j:
-                    self.__LMatrix[i][j] = 1
+                    self._LMatrix[i][j] = 1
 
-    def __initUMatrix(self):
-        for i in range(self.__len):
-            for j in range(self.__len):
+    def _initUMatrix(self):
+        for i in range(self._len):
+            for j in range(self._len):
                 if j == i + 1:
-                    self.__UMatrix[i][j] = self.__augMatrix[i][j]
+                    self._UMatrix[i][j] = self._augMatrix[i][j]
                     continue
-            if i == self.__len - 1:
+            if i == self._len - 1:
                 break
 
 
 class SquareRoot(object):
     def __init__(self, augMatrix):
-        self.__augMatrix = augMatrix
-        self.__len = len(self.__augMatrix)
-        self.__LMatrix = [[0] * self.__len for i in range(self.__len)]
-        self.__xList = [0 for i in range(self.__len)]
-        self.__yList = [0 for i in range(self.__len)]
+        self._augMatrix = augMatrix
+        self._len = len(self._augMatrix)
+        self._LMatrix = [[0] * self._len for i in range(self._len)]
+        self._xList = [0 for i in range(self._len)]
+        self._yList = [0 for i in range(self._len)]
 
     def CholeskyDecomposition(self):
-        for i in range(self.__len):
+        for i in range(self._len):
             tempSumL = 0
             tempSumY = 0
             for m in range(i):
-                tempSumL += self.__LMatrix[i][m]**2
-                tempSumY += self.__LMatrix[i][m]*self.__yList[m]
-            self.__LMatrix[i][i] = pow(self.__augMatrix[i][i] -
-                                       tempSumL, 0.5)
-            self.__yList[i] = (self.__augMatrix[i][-1] - tempSumY) / \
-                self.__LMatrix[i][i]
-            for j in range(i+1, self.__len):
+                tempSumL += self._LMatrix[i][m]**2
+                tempSumY += self._LMatrix[i][m]*self._yList[m]
+            self._LMatrix[i][i] = pow(self._augMatrix[i][i] -
+                                      tempSumL, 0.5)
+            self._yList[i] = (self._augMatrix[i][-1] - tempSumY) / \
+                self._LMatrix[i][i]
+            for j in range(i+1, self._len):
                 tempSumL = 0
                 for n in range(i):
-                    tempSumL += self.__LMatrix[j][n]*self.__LMatrix[i][n]
-                self.__LMatrix[j][i] = (self.__augMatrix[j][i] -
-                                        tempSumL) / self.__LMatrix[i][i]
-        for k in range(self.__len-1, -1, -1):
+                    tempSumL += self._LMatrix[j][n]*self._LMatrix[i][n]
+                self._LMatrix[j][i] = (self._augMatrix[j][i] -
+                                       tempSumL) / self._LMatrix[i][i]
+        for k in range(self._len-1, -1, -1):
             tempSumX = 0
-            for p in range(k+1, self.__len):
-                tempSumX += self.__LMatrix[p][k]*self.__xList[p]
-            self.__xList[k] = (self.__yList[k] - tempSumX)/self.__LMatrix[k][k]
-        return self.__xList
+            for p in range(k+1, self._len):
+                tempSumX += self._LMatrix[p][k]*self._xList[p]
+            self._xList[k] = (self._yList[k] - tempSumX)/self._LMatrix[k][k]
+        return self._xList
 
     def LDLT(self):
         d = self._initd()
         self._initLMatrix()
-        for i in range(self.__len):
+        for i in range(self._len):
             tempSumd = 0
             tempSumY = 0
             for m in range(i):
-                tempSumd += self.__LMatrix[i][m]**2*d[m]
-                tempSumY += self.__LMatrix[i][m]*self.__yList[m]
-            d[i] = self.__augMatrix[i][i] - tempSumd
-            self.__yList[i] = self.__augMatrix[i][-1] - tempSumY
-            for j in range(i+1, self.__len):
+                tempSumd += self._LMatrix[i][m]**2*d[m]
+                tempSumY += self._LMatrix[i][m]*self._yList[m]
+            d[i] = self._augMatrix[i][i] - tempSumd
+            self._yList[i] = self._augMatrix[i][-1] - tempSumY
+            for j in range(i+1, self._len):
                 tempSumL = 0
                 for n in range(i):
-                    tempSumL += self.__LMatrix[j][n]*d[n]*self.__LMatrix[i][n]
-                self.__LMatrix[j][i] = (self.__augMatrix[j][i]-tempSumL) / d[i]
-        for k in range(self.__len-1, -1, -1):
+                    tempSumL += self._LMatrix[j][n]*d[n]*self._LMatrix[i][n]
+                self._LMatrix[j][i] = (self._augMatrix[j][i]-tempSumL) / d[i]
+        for k in range(self._len-1, -1, -1):
             tempSumX = 0
-            for p in range(k+1, self.__len):
-                tempSumX += self.__LMatrix[p][k]*self.__xList[p]
-            self.__xList[k] = self.__yList[k]/d[k] - tempSumX
-        return self.__xList
+            for p in range(k+1, self._len):
+                tempSumX += self._LMatrix[p][k]*self._xList[p]
+            self._xList[k] = self._yList[k]/d[k] - tempSumX
+        return self._xList
 
     def _initd(self):
-        return [0 for i in range(self.__len)]
+        return [0 for i in range(self._len)]
 
     def _initLMatrix(self):
-        for i in range(self.__len):
-            for j in range(self.__len):
+        for i in range(self._len):
+            for j in range(self._len):
                 if i == j:
-                    self.__LMatrix[i][j] = 1
+                    self._LMatrix[i][j] = 1
