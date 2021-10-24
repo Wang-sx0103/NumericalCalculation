@@ -27,7 +27,7 @@ class Iteration(object):
                     self._augMatrix[i][i]
                 deltaList += (self._xList[i] - lastXList[i])**2
             deltaList = pow(deltaList, 0.5)
-            self._outStream(count)
+            # self._outStream(count)
         return self._xList
 
     def GaussSeidel(self, num=100, delta=0.00001):
@@ -53,7 +53,7 @@ class Iteration(object):
                     self._augMatrix[i][i]
                 deltaList += (self._xList[i] - temp)**2
             deltaList = pow(deltaList, 0.5)
-            self._outStream(count)
+            # self._outStream(count)
         return self._xList
 
     def SOR(self, num=100, delta=0.00001, omega=1):
@@ -79,7 +79,7 @@ class Iteration(object):
                     self._augMatrix[i][i]
                 deltaList += (self._xList[i] - lastXList[i])**2
             deltaList = pow(deltaList, 0.5)
-            self._outStream(count)
+            # self._outStream(count)
         return self._xList
 
     def _initXList(self, xList):
