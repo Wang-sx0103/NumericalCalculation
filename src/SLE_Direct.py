@@ -6,7 +6,7 @@ class ClassGE(object):
         self._len = len(self._augMatrix)
         self._xIndex = []
         self._ininXIndex()
-        self._xList = [0 for i in range(self._len)]
+        self._xList = [0 for _ in range(self._len)]
 
 # 直接使用高斯消元法
 
@@ -128,8 +128,8 @@ class TriDecomposition(object):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
         # self.__ininXIndex()
-        self._LMatrix = [[0] * self._len for i in range(self._len)]
-        self._UMatrix = [[0] * self._len for i in range(self._len)]
+        self._LMatrix = [[0] * self._len for _ in range(self._len)]
+        self._UMatrix = [[0] * self._len for _ in range(self._len)]
         self._initLMatrix()
         self._initUMatrix()
         self._xList = [0 for i in range(self._len)]
@@ -206,9 +206,9 @@ class SquareRoot(object):
     def __init__(self, augMatrix):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        self._LMatrix = [[0] * self._len for i in range(self._len)]
-        self._xList = [0 for i in range(self._len)]
-        self._yList = [0 for i in range(self._len)]
+        self._LMatrix = [[0] * self._len for _ in range(self._len)]
+        self._xList = [0 for _ in range(self._len)]
+        self._yList = [0 for _ in range(self._len)]
 
     def CholeskyDecomposition(self):
         for i in range(self._len):

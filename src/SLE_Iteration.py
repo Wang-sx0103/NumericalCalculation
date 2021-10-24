@@ -84,7 +84,7 @@ class Iteration(object):
 
     def _initXList(self, xList):
         if len(xList) == 0:
-            return [0 for i in range(self._len)]
+            return [0 for _ in range(self._len)]
         else:
             return xList
 
