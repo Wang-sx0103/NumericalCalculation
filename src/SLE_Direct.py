@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+import src.Initialization as init
+
 
 class ClassGE(object):
     def __init__(self, augMatrix):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        self._xIndex = []
-        self._ininXIndex()
-        self._xList = [0 for _ in range(self._len)]
+        self._xIndex = init.initListIndex(self._len)
+        self._xList = init.initList(self._len)
 
 # 直接使用高斯消元法
 
@@ -111,10 +112,6 @@ class ClassGE(object):
         self._xIndex[listMax], self._xIndex[column] = \
             self._xIndex[column], self._xIndex[listMax]
 
-    def _ininXIndex(self):
-        for index in range(self._len):
-            self._xIndex.append(index)
-
     def _changeXList(self):
         changedXList = []
         for i in range(len(self._xList)):
@@ -128,8 +125,8 @@ class TriDecomposition(object):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
         # self.__ininXIndex()
-        self._LMatrix = [[0] * self._len for _ in range(self._len)]
-        self._UMatrix = [[0] * self._len for _ in range(self._len)]
+        self._LMatrix = init.initMatrix(self._len)
+        self._UMatrix = init.initMatrix(self._len)
         self._initLMatrix()
         self._initUMatrix()
         self._xList = [0 for i in range(self._len)]
@@ -206,9 +203,9 @@ class SquareRoot(object):
     def __init__(self, augMatrix):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        self._LMatrix = [[0] * self._len for _ in range(self._len)]
-        self._xList = [0 for _ in range(self._len)]
-        self._yList = [0 for _ in range(self._len)]
+        self._LMatrix = init.initMatrix(self._len)
+        self._xList = init.initList(self._len)
+        self._yList = init.initList(self._len)
 
     def CholeskyDecomposition(self):
         for i in range(self._len):
@@ -235,7 +232,7 @@ class SquareRoot(object):
         return self._xList
 
     def LDLT(self):
-        d = self._initd()
+        d = init.initList(self._len)
         self._initLMatrix()
         for i in range(self._len):
             tempSumd = 0
@@ -256,9 +253,6 @@ class SquareRoot(object):
                 tempSumX += self._LMatrix[p][k]*self._xList[p]
             self._xList[k] = self._yList[k]/d[k] - tempSumX
         return self._xList
-
-    def _initd(self):
-        return [0 for i in range(self._len)]
 
     def _initLMatrix(self):
         for i in range(self._len):
