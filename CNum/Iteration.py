@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import CNum.Init as init
+import lib.Init as init
 
 
 class Iteration(object):
@@ -30,7 +30,6 @@ class Iteration(object):
                     self._augMatrix[i][i]
                 deltaList += (self._xList[i] - lastXList[i])**2
             deltaList = pow(deltaList, 0.5)
-            # self._outStream(count)
         return self._xList
 
     def GaussSeidel(self, num=100, delta=0.00001):
@@ -56,7 +55,6 @@ class Iteration(object):
                     self._augMatrix[i][i]
                 deltaList += (self._xList[i] - temp)**2
             deltaList = pow(deltaList, 0.5)
-            # self._outStream(count)
         return self._xList
 
     def SOR(self, num=100, delta=0.00001, omega=1):
@@ -82,18 +80,4 @@ class Iteration(object):
                     self._augMatrix[i][i]
                 deltaList += (self._xList[i] - lastXList[i])**2
             deltaList = pow(deltaList, 0.5)
-            # self._outStream(count)
         return self._xList
-
-    def _initXList(self, xList):
-        if len(xList) == 0:
-            return [0 for _ in range(self._len)]
-        else:
-            return xList
-
-    def _outStream(self, count):
-        printStr = str(count) + " Iteration Result:"
-        print(printStr)
-        for i in range(self._len):
-            print("x" + str(i+1) + ":" + str(round(self._xList[i], 5)))
-        print()
