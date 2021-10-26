@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import src.Initialization as init
+import CNum.Init as init
 
 
 class ClassGE(object):
