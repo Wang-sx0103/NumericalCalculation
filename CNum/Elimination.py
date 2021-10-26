@@ -2,7 +2,7 @@
 import CNum.Init as init
 
 
-class ClassGE(object):
+class Elimination(object):
     def __init__(self, augMatrix):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
