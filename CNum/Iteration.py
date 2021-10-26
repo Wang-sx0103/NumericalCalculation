@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+import CNum.Init as init
+
+
 class Iteration(object):
     def __init__(self, augMatrix, xList=[]):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        self._xList = self._initXList(xList)
+        self._xList = init.initList(xList)
 
     def Jacobi(self, num=100, delta=0.00001):
         count = 0

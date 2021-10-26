@@ -6,7 +6,7 @@ class SquareRoot(object):
     def __init__(self, augMatrix):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        self._LMatrix = init.initMatrix(self._len)
+        self._LMatrix = init.initLMat(self._len)
         self._xList = init.initList(self._len)
         self._yList = init.initList(self._len)
 
@@ -57,8 +57,3 @@ class SquareRoot(object):
             self._xList[k] = self._yList[k]/d[k] - tempSumX
         return self._xList
 
-    def _initLMatrix(self):
-        for i in range(self._len):
-            for j in range(self._len):
-                if i == j:
-                    self._LMatrix[i][j] = 1

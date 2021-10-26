@@ -7,13 +7,10 @@ class TriDecomposition(object):
     def __init__(self, augMatrix):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        # self.__ininXIndex()
-        self._LMatrix = init.initMatrix(self._len)
-        self._UMatrix = init.initMatrix(self._len)
-        self._initLMatrix()
-        self._initUMatrix()
-        self._xList = [0 for i in range(self._len)]
-        self._yList = [0 for i in range(self._len)]
+        self._LMatrix = init.initLMat(self._len)
+        self._UMatrix = init.initUMat(self._augMatrix)
+        self._xList = init.initList(self._len)
+        self._yList = init.initList(self._len)
 
     def DirTriDecomposition(self):
         self._yList[0] = self._augMatrix[0][-1]
@@ -65,18 +62,3 @@ class TriDecomposition(object):
             self._xList[i] = (self._yList[i] - self._UMatrix[i][i+1] *
                               self._xList[i+1]) / self._UMatrix[i][i]
         return self._xList
-
-    def _initLMatrix(self):
-        for i in range(self._len):
-            for j in range(self._len):
-                if i == j:
-                    self._LMatrix[i][j] = 1
-
-    def _initUMatrix(self):
-        for i in range(self._len):
-            for j in range(self._len):
-                if j == i + 1:
-                    self._UMatrix[i][j] = self._augMatrix[i][j]
-                    continue
-            if i == self._len - 1:
-                break
