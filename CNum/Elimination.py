@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import CNum.Init as init
+import lib.Init as init
 
 
 class Elimination(object):

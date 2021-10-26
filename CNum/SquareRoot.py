@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import CNum.Init as init
+import lib.Init as init
 
 
 class SquareRoot(object):
@@ -56,4 +56,3 @@ class SquareRoot(object):
                 tempSumX += self._LMatrix[p][k]*self._xList[p]
             self._xList[k] = self._yList[k]/d[k] - tempSumX
         return self._xList
-
