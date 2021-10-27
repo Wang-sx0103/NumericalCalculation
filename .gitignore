@@ -1,8 +1,8 @@
 # VS Code
 __pycache__/
 
-# Test Program
-Tests.py
+# Test Folder
+tests/
 
 # Temp Files
 Temp/
