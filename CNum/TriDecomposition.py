@@ -7,10 +7,10 @@ class TriDecomposition(object):
     def __init__(self, augMatrix):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        self._LMatrix = init.initLMat(self._len)
-        self._UMatrix = init.initUMat(self._augMatrix)
-        self._xList = init.initList(self._len)
-        self._yList = init.initList(self._len)
+        self._LMatrix = init.LMat(self._len)
+        self._UMatrix = init.UMat(self._augMatrix)
+        self._xList = init.vector(self._len)
+        self._yList = init.vector(self._len)
 
     def DirTriDecomposition(self):
         self._yList[0] = self._augMatrix[0][-1]

@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
 import lib.Init as init
 import lib.MatCal as mc
-# import lib.Matrix as mat
 
 
 class Power(object):
     def __init__(self, Matrix: list = [], xList: list = []):
         self._matrix = Matrix
         self._len = len(Matrix)
-        self._xList = mc.vectorToMat(init.initList(xList))
+        self._xList = xList
 
     def setMatrix(self, Matrix: list):
         self._matrix = Matrix
 
     def getMatrix(self):
-        return self.Matrix
+        return self._matrix
 
     def setInitEigenvectors(self, xList: list):
         self._xList = mc.vectorToMat(init.initList(xList))

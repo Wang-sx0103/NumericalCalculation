@@ -6,9 +6,9 @@ class SquareRoot(object):
     def __init__(self, augMatrix):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        self._LMatrix = init.initLMat(self._len)
-        self._xList = init.initList(self._len)
-        self._yList = init.initList(self._len)
+        self._LMatrix = init.LMat(self._len)
+        self._xList = init.vector(self._len)
+        self._yList = init.vector(self._len)
 
     def CholeskyDecomposition(self):
         for i in range(self._len):

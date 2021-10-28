@@ -6,8 +6,8 @@ class Elimination(object):
     def __init__(self, augMatrix):
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        self._xIndex = init.initListIndex(self._len)
-        self._xList = init.initList(self._len)
+        self._xIndex = init.vectorIndex(self._len)
+        self._xList = init.vector(self._len)
 
 # 直接使用高斯消元法
 
