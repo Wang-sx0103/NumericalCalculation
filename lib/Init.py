@@ -1,20 +1,25 @@
 # -*- coding: utf-8 -*-
 
-def initListIndex(size):
+def vectorIndex(size: int) -> list:
     indexList = []
     for index in range(size):
         indexList.append(index)
     return indexList
 
 
-def initList(para):
-    if isinstance(para, int):
-        return [0 for _ in range(para)]
-    elif isinstance(para, list):
-        return para
+def vector(listLen, flag=0) -> list:
+    if flag == 0:
+        return [0 for _ in range(listLen)]
+    elif flag == 1:
+        returnList = [0 for _ in range(listLen)]
+        returnList[-1] = 1
+        return returnList
+    elif flag == 11:
+        returnList = [0 for _ in range(listLen)]
+        return returnList
 
 
-def initLMat(size):
+def LMat(size: int) -> list:
     mat = [[0] * size for _ in range(size)]
     for i in range(size):
         for j in range(size):
@@ -22,7 +27,7 @@ def initLMat(size):
                 mat[i][j] = 1
 
 
-def initUMat(AMat):
+def UMat(AMat: list) -> list:
     size = len(AMat)
     mat = [[0] * size for _ in range(size)]
     for i in range(size):
@@ -32,3 +37,7 @@ def initUMat(AMat):
                 continue
         if i == size - 1:
             break
+
+
+def Matrix(row, col) -> list:
+    return [[0]*col for _ in range(row)]
