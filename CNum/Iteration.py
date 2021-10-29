@@ -1,19 +1,55 @@
 # -*- coding: utf-8 -*-
-import lib.Init as init
-
 
 class Iteration(object):
-    def __init__(self, augMatrix, xList=[]):
+    def __init__(self,
+                 augMatrix: list = [],
+                 xList: list = [],
+                 iteraNum: int = 100,
+                 threshold: float = 0.000001,
+                 relaxaFactor: float = 1) -> None:
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
-        self._xList = init.vector(xList)
+        self._xList = xList
+        self._IteraNum = iteraNum
+        self._threshold = threshold
+        self._relaxaFactor = relaxaFactor
 
-    def Jacobi(self, num=100, delta=0.00001):
+    def setAugMat(self, augMat: list) -> None:
+        self._augMatrix = augMat
+
+    def getAugMat(self) -> list:
+        return self._augMatrix
+
+    def setIteraValue(self, xList: list) -> None:
+        self._xList = xList
+
+    def getIteraResults(self) -> list:
+        return self._xList
+
+    def setIteraNum(self, IteraNum: int) -> None:
+        self._IteraNum = IteraNum
+
+    def getIteraNum(self) -> float:
+        return self._IteraNum
+
+    def setThreshold(self, threshold: float) -> None:
+        self._threshold = threshold
+
+    def getThreshold(self) -> float:
+        return self._threshold
+
+    def setRelaxaFactor(self, relaxaFactor: float) -> None:
+        self._relaxaFactor = relaxaFactor
+
+    def getRelaxaFactor(self) -> float:
+        return self._relaxaFactor
+
+    def Jacobi(self) -> list:
         count = 0
         deltaList = 1
-        while deltaList > delta:
+        while deltaList > self._threshold:
             deltaList = 0
-            if count == num:
+            if count == self._IteraNum:
                 self._xList
                 break
             else:
@@ -32,12 +68,12 @@ class Iteration(object):
             deltaList = pow(deltaList, 0.5)
         return self._xList
 
-    def GaussSeidel(self, num=100, delta=0.00001):
+    def GaussSeidel(self) -> list:
         count = 0
         deltaList = 1
-        while deltaList > delta:
+        while deltaList > self._threshold:
             deltaList = 0
-            if count == num:
+            if count == self._IteraNum:
                 self._xList
                 break
             else:
@@ -57,12 +93,12 @@ class Iteration(object):
             deltaList = pow(deltaList, 0.5)
         return self._xList
 
-    def SOR(self, num=100, delta=0.00001, omega=1):
+    def SOR(self, omega=1) -> list:
         count = 0
         deltaList = 1
-        while deltaList > delta:
+        while deltaList > self._threshold:
             deltaList = 0
-            if count == num:
+            if count == self._IteraNum:
                 self._xList
                 break
             else:

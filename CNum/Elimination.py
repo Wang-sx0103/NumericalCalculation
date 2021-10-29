@@ -3,7 +3,7 @@ import lib.Init as init
 
 
 class Elimination(object):
-    def __init__(self, augMatrix):
+    def __init__(self, augMatrix: list) -> None:
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
         self._xIndex = init.vectorIndex(self._len)
@@ -82,7 +82,7 @@ class Elimination(object):
                 self._augMatrix[i][i]
         return self._changeXList()
 
-    def _changeOrder(self, column):
+    def _changeOrder(self, column: int) -> list:
         temp = []
         for i in range(column, self._len):
             temp.append(abs(self._augMatrix[i][column]))
@@ -90,7 +90,7 @@ class Elimination(object):
         self._augMatrix[column], self._augMatrix[maxColumn] = \
             self._augMatrix[maxColumn], self._augMatrix[column]
 
-    def _allChangeOrder(self, column):
+    def _allChangeOrder(self, column: int) -> list:
         max = 0
         rowMax = 0         # 最大值的行索引
         listMax = 0        # 最大值的列索引
@@ -112,7 +112,7 @@ class Elimination(object):
         self._xIndex[listMax], self._xIndex[column] = \
             self._xIndex[column], self._xIndex[listMax]
 
-    def _changeXList(self):
+    def _changeXList(self) -> list:
         changedXList = []
         for i in range(len(self._xList)):
             changedXList.append(self._xList[self._xIndex[i]])

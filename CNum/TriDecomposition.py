@@ -3,8 +3,7 @@ import lib.Init as init
 
 
 class TriDecomposition(object):
-
-    def __init__(self, augMatrix):
+    def __init__(self, augMatrix: list) -> None:
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
         self._LMatrix = init.LMat(self._len)
@@ -12,7 +11,13 @@ class TriDecomposition(object):
         self._xList = init.vector(self._len)
         self._yList = init.vector(self._len)
 
-    def DirTriDecomposition(self):
+    def getLMat(self) -> list:
+        return self._LMatrix
+
+    def getUMat(self) -> list:
+        return self._UMatrix
+
+    def DirTriDecomposition(self) -> list:
         self._yList[0] = self._augMatrix[0][-1]
         for i in range(self._len):
             tempSumY = 0
@@ -42,7 +47,7 @@ class TriDecomposition(object):
                 self._UMatrix[p][p]
         return self._xList
 
-    def chase(self):
+    def chase(self) -> list:
         self._UMatrix[0][0] = self._augMatrix[0][0]
         self._yList[0] = self._augMatrix[0][-1]
         for i in range(1, self._len):

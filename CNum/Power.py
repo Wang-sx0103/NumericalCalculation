@@ -1,28 +1,47 @@
 # -*- coding: utf-8 -*-
-import lib.Init as init
+
 import lib.MatCal as mc
 
 
 class Power(object):
-    def __init__(self, Matrix: list = [], xList: list = []):
+    def __init__(self,
+                 Matrix: list = [],
+                 xList: list = [],
+                 IteraNum: int = 100,
+                 threshold: float = 0.000001) -> None:
+
         self._matrix = Matrix
         self._len = len(Matrix)
-        self._xList = xList
+        self._xList = mc.vectorToMat(xList)
+        self._IteraNum = IteraNum
+        self._threshold = threshold
 
-    def setMatrix(self, Matrix: list):
+    def setMatrix(self, Matrix: list) -> None:
         self._matrix = Matrix
 
-    def getMatrix(self):
+    def getMatrix(self) -> list:
         return self._matrix
 
-    def setInitEigenvectors(self, xList: list):
-        self._xList = mc.vectorToMat(init.initList(xList))
+    def setInitEigenvectors(self, xList: list) -> None:
+        self._xList = mc.vectorToMat(xList)
 
-    def getEigenvectors(self):
+    def getEigenvectors(self) -> list:
         return self._xList
 
+    def setIteraNum(self, IteraNum: int) -> None:
+        self._IteraNum = IteraNum
+
+    def getIteraNum(self) -> float:
+        return self._IteraNum
+
+    def setThreshold(self, threshold: float) -> None:
+        self._threshold = threshold
+
+    def getThreshold(self) -> float:
+        return self._threshold
+
     # 规范化幂法
-    def NorPower(self, num=100, delta=0.000001):
+    def NorPower(self, num=100, delta=0.000001) -> float:
         count = 0
         deltaNum = 1
         lambda0 = 0

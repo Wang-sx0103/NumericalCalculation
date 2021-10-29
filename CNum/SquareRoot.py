@@ -3,14 +3,17 @@ import lib.Init as init
 
 
 class SquareRoot(object):
-    def __init__(self, augMatrix):
+    def __init__(self, augMatrix: list) -> None:
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
         self._LMatrix = init.LMat(self._len)
         self._xList = init.vector(self._len)
         self._yList = init.vector(self._len)
 
-    def CholeskyDecomposition(self):
+    def getLMat(self) -> list:
+        return self._LMatrix
+
+    def CholeskyDecomposition(self) -> list:
         for i in range(self._len):
             tempSumL = 0
             tempSumY = 0
@@ -34,9 +37,8 @@ class SquareRoot(object):
             self._xList[k] = (self._yList[k] - tempSumX)/self._LMatrix[k][k]
         return self._xList
 
-    def LDLT(self):
-        d = init.initList(self._len)
-        self._initLMatrix()
+    def LDLT(self) -> list:
+        d = init.vector(self._len)
         for i in range(self._len):
             tempSumd = 0
             tempSumY = 0
