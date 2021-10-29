@@ -8,21 +8,24 @@ class Elimination(object):
         self._len = len(self._augMatrix)
         self._xIndex = init.vectorIndex(self._len)
         self._xList = init.vector(self._len)
+        self._errorList = []
 
-# 直接使用高斯消元法
+    # 直接使用高斯消元法
 
-    def gauss(self):
+    def gauss(self) -> list:
         for k in range(self._len):
             for i in range(k, self._len-1):
                 if round(self._augMatrix[k][k], 5) == 0.00000:
-                    return "主元素存在为0的情况," + \
-                        "请更换为其它消元法!"
+                    self._errorList.append("主元素存在为0的情况," +
+                                           "请更换为其它消元法!")
+                    return self._errorList
                 ratio = self._augMatrix[i+1][k]/self._augMatrix[k][k]
                 for j in range(k, self._len+1):
                     self._augMatrix[i+1][j] = self._augMatrix[i+1][j] - \
                         ratio * self._augMatrix[k][j]
         if round(self._augMatrix[self._len-1][self._len-1], 5) == 0.00000:
-            return "线性方程组无解！"
+            self._errorList.append("线性方程组无解！")
+            return self._errorList
         self._xList[-1] = self._augMatrix[self._len-1][-1] / \
             self._augMatrix[self._len-1][self._len-1]
         for i in range(self._len-2, -1, -1):
@@ -33,21 +36,23 @@ class Elimination(object):
                 self._augMatrix[i][i]
         return self._xList
 
-# 列主元素高斯消元法
+    # 列主元素高斯消元法
 
-    def orderEliminateGauss(self):
+    def orderEliminateGauss(self) -> list:
         for k in range(self._len):
             self._changeOrder(k)
             for i in range(k, self._len-1):
                 if round(self._augMatrix[k][k], 5) == 0.00000:
-                    return "主元素存在为0的情况," + \
-                        "请更换为全主元素法!"
+                    self._errorList.append("主元素存在为0的情况," +
+                                           "请更换为全主元素法!")
+                    return self._errorList
                 ratio = self._augMatrix[i+1][k]/self._augMatrix[k][k]
                 for j in range(k, self._len+1):
                     self._augMatrix[i+1][j] = self._augMatrix[i+1][j] - \
                         ratio * self._augMatrix[k][j]
         if round(self._augMatrix[self._len-1][self._len-1], 5) == 0.00000:
-            return "线性方程组无解！"
+            self._errorList.append("线性方程组无解！")
+            return self._errorList
         self._xList[-1] = self._augMatrix[self._len-1][-1] / \
             self._augMatrix[self._len-1][self._len-1]
         for i in range(self._len-2, -1, -1):
@@ -58,20 +63,23 @@ class Elimination(object):
                 self._augMatrix[i][i]
         return self._xList
 
-# 全主元素法
+    # 全主元素法
 
-    def completeEliminateGauss(self):
+    def completeEliminateGauss(self) -> list:
         for k in range(self._len):
             self._allChangeOrder(k)
             for i in range(k, self._len-1):
                 if round(self._augMatrix[k][k], 5) == 0.00000:
-                    return "线性方程组无解！"
+                    self._flag = 1
+                    self._errorList.append("线性方程组无解！")
+                    return self._errorList
                 ratio = self._augMatrix[i+1][k]/self._augMatrix[k][k]
                 for j in range(k, self._len+1):
                     self._augMatrix[i+1][j] = self._augMatrix[i+1][j] - \
                         ratio * self._augMatrix[k][j]
         if round(self._augMatrix[self._len-1][self._len-1], 5) == 0.00000:
-            return "线性方程组无解！"
+            self._errorList("线性方程组无解！")
+            return self._errorList
         self._xList[-1] = self._augMatrix[self._len-1][-1] / \
             self._augMatrix[self._len-1][self._len-1]
         for i in range(self._len-2, -1, -1):
