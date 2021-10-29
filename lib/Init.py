@@ -7,7 +7,7 @@ def vectorIndex(size: int) -> list:
     return indexList
 
 
-def vector(listLen, flag=0) -> list:
+def vector(listLen: int, flag: int = 0) -> list:
     if flag == 0:
         return [0 for _ in range(listLen)]
     elif flag == 1:

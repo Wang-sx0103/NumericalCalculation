@@ -26,7 +26,7 @@ def matDivNum(mat: list, num: float) -> list:
     return mat
 
 
-def absMax(mat: list, flag=0) -> float:
+def absMax(mat: list, flag: int = 0) -> float:
     max = 0
     indexI = 0
     indexJ = 0
