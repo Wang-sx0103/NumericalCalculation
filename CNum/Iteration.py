@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 class Iteration(object):
     def __init__(self,
                  augMatrix: list = [],
@@ -44,6 +45,8 @@ class Iteration(object):
     def getRelaxaFactor(self) -> float:
         return self._relaxaFactor
 
+    # 雅各比迭代法 Jocobi Iteration
+
     def Jacobi(self) -> list:
         count = 0
         deltaList = 1
@@ -67,6 +70,8 @@ class Iteration(object):
                 deltaList += (self._xList[i] - lastXList[i])**2
             deltaList = pow(deltaList, 0.5)
         return self._xList
+
+    # 高斯-赛德尔迭代法 Gauss-Seidel Iteration
 
     def GaussSeidel(self) -> list:
         count = 0
@@ -92,6 +97,8 @@ class Iteration(object):
                 deltaList += (self._xList[i] - temp)**2
             deltaList = pow(deltaList, 0.5)
         return self._xList
+
+    # 松弛法 Successive Over - Relaxation Iteration
 
     def SOR(self, omega=1) -> list:
         count = 0

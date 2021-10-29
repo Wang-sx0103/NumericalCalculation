@@ -13,6 +13,8 @@ class SquareRoot(object):
     def getLMat(self) -> list:
         return self._LMatrix
 
+    # Cholesky追赶法
+
     def CholeskyDecomposition(self) -> list:
         for i in range(self._len):
             tempSumL = 0
@@ -36,6 +38,8 @@ class SquareRoot(object):
                 tempSumX += self._LMatrix[p][k]*self._xList[p]
             self._xList[k] = (self._yList[k] - tempSumX)/self._LMatrix[k][k]
         return self._xList
+
+    # 改进平方根法
 
     def LDLT(self) -> list:
         d = init.vector(self._len)

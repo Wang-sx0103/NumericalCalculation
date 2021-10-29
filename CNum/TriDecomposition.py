@@ -17,6 +17,8 @@ class TriDecomposition(object):
     def getUMat(self) -> list:
         return self._UMatrix
 
+    # 直接三角分解法
+
     def DirTriDecomposition(self) -> list:
         self._yList[0] = self._augMatrix[0][-1]
         for i in range(self._len):
@@ -46,6 +48,8 @@ class TriDecomposition(object):
             self._xList[p] = (self._yList[p] - tempSumX) / \
                 self._UMatrix[p][p]
         return self._xList
+
+    # 追赶法
 
     def chase(self) -> list:
         self._UMatrix[0][0] = self._augMatrix[0][0]
