@@ -25,6 +25,7 @@ def LMat(size: int) -> list:
         for j in range(size):
             if i == j:
                 mat[i][j] = 1
+    return mat
 
 
 def UMat(AMat: list) -> list:
@@ -37,6 +38,7 @@ def UMat(AMat: list) -> list:
                 continue
         if i == size - 1:
             break
+    return mat
 
 
 def Matrix(row, col) -> list:
