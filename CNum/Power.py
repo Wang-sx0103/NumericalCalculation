@@ -1,23 +1,27 @@
 # -*- coding: utf-8 -*-
 
 import lib.MatCal as mc
+import lib.Init as init
 
 
 class Power(object):
     def __init__(self,
                  Matrix: list = [],
                  xList: list = [],
-                 IteraNum: int = 100,
+                 iteraNum: int = 100,
                  threshold: float = 0.000001) -> None:
 
         self._matrix = Matrix
-        self._len = len(Matrix)
+        self._row = len(Matrix)
+        self._col = len(Matrix)
         self._xList = mc.vectorToMat(xList)
-        self._IteraNum = IteraNum
+        self._iteraNum = iteraNum
         self._threshold = threshold
 
     def setMatrix(self, Matrix: list) -> None:
         self._matrix = Matrix
+        self._row = len(Matrix)
+        self._col = len(Matrix)
 
     def getMatrix(self) -> list:
         return self._matrix
@@ -28,11 +32,11 @@ class Power(object):
     def getEigenvectors(self) -> list:
         return self._xList
 
-    def setIteraNum(self, IteraNum: int) -> None:
-        self._IteraNum = IteraNum
+    def setIteraNum(self, iteraNum: int) -> None:
+        self._iteraNum = iteraNum
 
     def getIteraNum(self) -> float:
-        return self._IteraNum
+        return self._iteraNum
 
     def setThreshold(self, threshold: float) -> None:
         self._threshold = threshold
@@ -41,19 +45,41 @@ class Power(object):
         return self._threshold
 
     # 规范化幂法
-    def NorPower(self, num=100, delta=0.000001) -> float:
+    def NorPower(self) -> float:
         count = 0
         deltaNum = 1
-        lambda0 = 0
+        maxEigenvalue = 0
         mu = 0
-        while deltaNum > delta:
-            if count == num:
+        while deltaNum > self._threshold:
+            if count == self._iteraNum:
                 break
             deltaNum = 0
-            tempY = mc.matDivNum(self._xList, mc.absMax(self._xList, 1))
-            self._xList = mc.matMul(self._matrix, tempY)
-            lambda0 = mc.absMax(self._xList, 1)
-            deltaNum = abs(lambda0-mu)
-            mu = lambda0
+            self._xList = mc.matMul(self._matrix,
+                                    mc.matDivNum(self._xList,
+                                                 mc.absMax(self._xList, 1)))
+            maxEigenvalue = mc.absMax(self._xList, 1)
+            deltaNum = abs(maxEigenvalue-mu)
+            mu = maxEigenvalue
             count += 1
-        return lambda0
+        return maxEigenvalue
+
+    # 原点移位法
+    def OriginShift(self, lambda0: float = 0):
+        shiftMat = init.Matrix(self._row, self._col)
+        shiftMat = mc.matSub(self._matrix, init.Identity(self._row, lambda0))
+        iteraNum = 0
+        deltaNum = 1
+        maxEigenvalue = 0
+        mu = 0
+        while deltaNum > self._threshold:
+            if iteraNum == self._iteraNum:
+                break
+            deltaNum = 0
+            self._xList = mc.matMul(shiftMat,
+                                    mc.matDivNum(self._xList,
+                                                 mc.absMax(self._xList, 1)))
+            maxEigenvalue = mc.absMax(self._xList, 1)
+            deltaNum = abs(maxEigenvalue-mu)
+            mu = maxEigenvalue
+            iteraNum += 1
+        return maxEigenvalue + lambda0
