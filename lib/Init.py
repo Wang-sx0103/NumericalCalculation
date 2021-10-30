@@ -41,5 +41,14 @@ def UMat(AMat: list) -> list:
     return mat
 
 
-def Matrix(row, col) -> list:
+def Matrix(row: int, col: int) -> list:
     return [[0]*col for _ in range(row)]
+
+
+def Identity(order: int, lambda0: float = 1) -> list:
+    resultMat = Matrix(order, order)
+    for i in range(order):
+        for j in range(order):
+            if i == j:
+                resultMat[i][j] = 1*lambda0
+    return resultMat
