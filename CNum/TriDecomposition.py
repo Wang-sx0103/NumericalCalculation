@@ -11,6 +11,12 @@ class TriDecomposition(object):
         self._xList = init.vector(self._len)
         self._yList = init.vector(self._len)
 
+    def setAugMat(self, augMat: list) -> None:
+        self._augMatrix = augMat
+
+    def getAugMat(self) -> list:
+        return self._augMatrix
+
     def getLMat(self) -> list:
         return self._LMatrix
 
