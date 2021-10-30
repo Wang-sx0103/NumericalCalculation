@@ -2,6 +2,7 @@
 
 import lib.MatCal as mc
 import lib.Init as init
+import CNum.TriDecomposition as td
 
 
 class Power(object):
@@ -83,3 +84,29 @@ class Power(object):
             mu = maxEigenvalue
             iteraNum += 1
         return maxEigenvalue + lambda0
+
+    # Aitken加速法 Aitken acceleration
+    def AitkenAcc(self) -> float:
+        count = 0
+        deltaNum = 1
+        maxEigenvalue = 0
+        mu = 1
+        alpha0 = 0
+        alpha1 = 0
+        alpha2 = 0
+        while deltaNum > self._threshold:
+            if count == self._iteraNum:
+                break
+            deltaNum = 0
+            self._xList = mc.matMul(self._matrix,
+                                    mc.matDivNum(self._xList,
+                                                 mc.absMax(self._xList, 1)))
+            alpha2 = mc.absMax(self._xList, 1)
+            maxEigenvalue = alpha0 - (pow(alpha1-alpha0, 2) /
+                                      (alpha2-2*alpha1+alpha0))
+            deltaNum = abs(maxEigenvalue-mu)
+            alpha0 = alpha1
+            alpha1 = alpha2
+            mu = maxEigenvalue
+            count += 1
+        return maxEigenvalue
