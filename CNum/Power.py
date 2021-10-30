@@ -110,3 +110,28 @@ class Power(object):
             mu = maxEigenvalue
             count += 1
         return maxEigenvalue
+
+    # 反幂法 Inverse power methond
+    def InversePower(self, appro: float = 0) -> float:
+        shiftMat = init.Matrix(self._row, self._col)
+        shiftMat = mc.matSub(self._matrix, init.Identity(self._row, appro))
+        dtd = td.TriDecomposition(shiftMat)
+        count = 0
+        deltaNum = 1
+        minEigenvalue = 0
+        mu = 1
+        while deltaNum > self._threshold:
+            if count == self._iteraNum:
+                break
+            deltaNum = 0
+            shiftMat = init.AugMat(shiftMat,
+                                   mc.matDivNum(self._xList,
+                                                mc.absMax(self._xList, 1)))
+            dtd.setAugMat(shiftMat)
+            self._xList = mc.vectorToMat(dtd.DirTriDecomposition())
+            minEigenvalue = mc.absMax(self._xList, 1)
+            deltaNum = abs(1/minEigenvalue-1/mu)
+            mu = minEigenvalue
+            count += 1
+        self._xList = mc.matDivNum(self._xList, mc.absMax(self._xList, 1))
+        return appro + 1/minEigenvalue
