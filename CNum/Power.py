@@ -124,10 +124,9 @@ class Power(object):
             if count == self._iteraNum:
                 break
             deltaNum = 0
-            shiftMat = init.AugMat(shiftMat,
-                                   mc.matDivNum(self._xList,
-                                                mc.absMax(self._xList, 1)))
-            dtd.setAugMat(shiftMat)
+            dtd.setAugMat(init.AugMat(shiftMat,
+                                      mc.matDivNum(self._xList,
+                                                   mc.absMax(self._xList, 1))))
             self._xList = mc.vectorToMat(dtd.DirTriDecomposition())
             minEigenvalue = mc.absMax(self._xList, 1)
             deltaNum = abs(1/minEigenvalue-1/mu)
