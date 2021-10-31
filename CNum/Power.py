@@ -24,13 +24,19 @@ class Power(object):
         self._row = len(Matrix)
         self._col = len(Matrix)
 
-    def getMatrix(self) -> list:
+    def getMatrix(self, mantissa: int = 3) -> list:
+        for i in range(self._row):
+            for j in range(self._col):
+                self._matrix[i][j] = round(self._matrix[i][j], mantissa)
         return self._matrix
 
     def setInitEigenvectors(self, xList: list) -> None:
         self._xList = mc.vectorToMat(xList)
 
-    def getEigenvectors(self) -> list:
+    def getEigenvectors(self, mantissa: int = 3) -> list:
+        for i in range(self._row):
+            for j in range(len(self._xList[0])):
+                self._xList[i][j] = round(self._xList[i][j], mantissa)
         return self._xList
 
     def setIteraNum(self, iteraNum: int) -> None:
@@ -46,7 +52,7 @@ class Power(object):
         return self._threshold
 
     # 规范化幂法
-    def NorPower(self) -> float:
+    def NorPower(self, mantissa: int = 3) -> float:
         count = 0
         deltaNum = 1
         maxEigenvalue = 0
@@ -62,10 +68,10 @@ class Power(object):
             deltaNum = abs(maxEigenvalue-mu)
             mu = maxEigenvalue
             count += 1
-        return maxEigenvalue
+        return round(maxEigenvalue, mantissa)
 
     # 原点移位法
-    def OriginShift(self, lambda0: float = 0):
+    def OriginShift(self, lambda0: float = 0, mantissa: int = 3):
         shiftMat = init.Matrix(self._row, self._col)
         shiftMat = mc.matSub(self._matrix, init.Identity(self._row, lambda0))
         iteraNum = 0
@@ -83,10 +89,10 @@ class Power(object):
             deltaNum = abs(maxEigenvalue-mu)
             mu = maxEigenvalue
             iteraNum += 1
-        return maxEigenvalue + lambda0
+        return round(maxEigenvalue + lambda0, mantissa)
 
     # Aitken加速法 Aitken acceleration
-    def AitkenAcc(self) -> float:
+    def AitkenAcc(self, mantissa: int = 3) -> float:
         count = 0
         deltaNum = 1
         maxEigenvalue = 0
@@ -109,10 +115,10 @@ class Power(object):
             alpha1 = alpha2
             mu = maxEigenvalue
             count += 1
-        return maxEigenvalue
+        return round(maxEigenvalue, mantissa)
 
     # 反幂法 Inverse power methond
-    def InversePower(self, appro: float = 0) -> float:
+    def InversePower(self, appro: float = 0, mantissa: int = 3) -> float:
         shiftMat = init.Matrix(self._row, self._col)
         shiftMat = mc.matSub(self._matrix, init.Identity(self._row, appro))
         dtd = td.TriDecomposition(shiftMat)
@@ -133,4 +139,4 @@ class Power(object):
             mu = minEigenvalue
             count += 1
         self._xList = mc.matDivNum(self._xList, mc.absMax(self._xList, 1))
-        return appro + 1/minEigenvalue
+        return round(appro + 1/minEigenvalue, mantissa)
