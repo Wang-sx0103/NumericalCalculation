@@ -10,7 +10,7 @@ class Interpolation(object):
         self._yList = yList
         self._len = len(xList)
 
-    def setKPoints(self, KnowPoints: list):
+    def setKPoints(self, KnowPoints: list) -> None:
         self._xList = KnowPoints[0]
         self._yList = KnowPoints[1]
 
