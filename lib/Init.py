@@ -45,6 +45,15 @@ def Matrix(row: int, col: int) -> list:
     return [[0]*col for _ in range(row)]
 
 
+def AugMat(mat: list, vector: list) -> list:
+    row: int = len(mat)
+    col: int = len(vector[0])
+    for i in range(row):
+        for j in range(col):
+            mat[i].append(vector[i][j])
+    return mat
+
+
 def Identity(order: int, lambda0: float = 1) -> list:
     resultMat = Matrix(order, order)
     for i in range(order):

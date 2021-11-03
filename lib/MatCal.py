@@ -19,11 +19,44 @@ def matMul(mat1: list, mat2: list) -> list:
     return resultMat
 
 
+def matAdd(mat1: list, mat2: list) -> list:
+    row: int = len(mat1)
+    col: int = len(mat2[0])
+    resultMat = init.Matrix()
+    for i in range(row):
+        for j in range(col):
+            resultMat[i][j] = mat1[i][j] + mat2[i][j]
+    return resultMat
+
+
+def matSub(mat1: list, mat2: list) -> list:
+    row: int = len(mat1)
+    col: int = len(mat1[0])
+    resultMat = init.Matrix(row, col)
+    for i in range(row):
+        for j in range(col):
+            resultMat[i][j] = mat1[i][j] - mat2[i][j]
+    return resultMat
+
+
 def matDivNum(mat: list, num: float) -> list:
-    for i in range(len(mat)):
-        for j in range(len(mat[i])):
-            mat[i][j] = mat[i][j]/num
-    return mat
+    row: int = len(mat)
+    col: int = len(mat[0])
+    returnMat = init.Matrix(row, col)
+    for i in range(row):
+        for j in range(col):
+            returnMat[i][j] = mat[i][j]/num
+    return returnMat
+
+
+def numMulMat(num: float, mat: list) -> list:
+    row: int = len(mat)
+    col: int = len(mat[0])
+    returnMat = init.Matrix(row, col)
+    for i in range(row):
+        for j in range(col):
+            returnMat[i][j] = mat[i][j]*num
+    return returnMat
 
 
 def absMax(mat: list, flag: int = 0) -> float:
