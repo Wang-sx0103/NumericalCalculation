@@ -27,6 +27,8 @@ class Interpolation(object):
     def getListY(self) -> list:
         return self._yList
 
+    # Lagrangian Interpolation Method
+    # 拉格朗日插值法
     def Lagrange(self, x: float) -> float:
         self._l = self._LagIBF(x)
         L = 0
@@ -34,6 +36,8 @@ class Interpolation(object):
             L += self._l[i]*self._yList[i]
         return L
 
+    # Newtow Interpolation Method
+    # 牛顿插值法
     def Newton(self, x: float) -> float:
         self._diffQuo = self._DiffQuotient()
         N = self._diffQuo[0]
@@ -41,6 +45,8 @@ class Interpolation(object):
             N += self._diffQuo[i]*self._xSubX(x, i)
         return N
 
+    # Used to generate Lagrange basis functions
+    # 用于生成拉格朗日基函数
     def _LagIBF(self, x: float) -> list:
         resultVector = init.vector(self._len)
         for i in range(self._len):
@@ -52,6 +58,8 @@ class Interpolation(object):
             resultVector[i] = lagIBF
         return resultVector
 
+    # Used to construct difference quotient
+    # 用于构建差商
     def _DiffQuotient(self) -> list:
         resultVector = init.vector(self._len)
         resultVector[0] = self._yList[0]
