@@ -1,5 +1,6 @@
 [TOC]
 
+![CNum](https://github.com/Wang-sx0103/NumericalCalculation/tree/main/branding/logo/primary/CNumlogo.jpg)
 # **NumericalCalculation**
 
   A library related to common **numerical calculations**  
@@ -17,6 +18,7 @@ NuericalCalculation is released under a  [GPLv3 license](https://github.com/Wang
 ### CNum
 This package contains classes that users use directly  
 Then, we will introduce the functions of each class  
+
 #### Elimination
 - Calling Class
 ```python
