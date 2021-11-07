@@ -1,6 +1,6 @@
 [TOC]
 
-![CNum](https://github.com/Wang-sx0103/NumericalCalculation/tree/main/branding/logo/primary/CNumlogo.jpg)
+![CNum](/branding/logo/primary/CNumlogo.jpg)
 # **NumericalCalculation**
 
   A library related to common **numerical calculations**  
