@@ -5,14 +5,17 @@ import lib.Init as init
 class Interpolation(object):
     def __init__(self,
                  xList: list = [],
-                 yList: list = []) -> None:
+                 yList: list = [],
+                 yDer1th: list = []) -> None:
         self._xList = xList
         self._yList = yList
+        self._yDer1th = yDer1th
         self._len = len(xList)
 
     def setKPoints(self, KnowPoints: list) -> None:
         self._xList = KnowPoints[0]
         self._yList = KnowPoints[1]
+        self._yDer1th = KnowPoints[2]
 
     def setListX(self, xList: list) -> None:
         self._xList = xList
@@ -26,6 +29,12 @@ class Interpolation(object):
 
     def getListY(self) -> list:
         return self._yList
+
+    def setListYDer1th(self, yDer1th: list) -> None:
+        self._yDer1th = yDer1th
+
+    def getListYDer1th(self) -> list:
+        return self._yDer1th
 
     # Lagrangian Interpolation Method
     # 拉格朗日插值法
@@ -44,6 +53,20 @@ class Interpolation(object):
         for i in range(1, self._len):
             N += self._diffQuo[i]*self._xSubX(x, i)
         return N
+
+    # Hermite Interpolation Method
+    # 埃尔米特三次插值
+    def Hermite(self, x: float) -> float:
+        x0 = self._xList[0]
+        x1 = self._xList[1]
+        y0 = self._xList[0]
+        y1 = self._xList[1]
+        yDer0 = self._xList[0]
+        yDer1 = self._xList[1]
+        return (1+2*(x-x0)/(x1-x0))*((x-x1)/(x0-x1)**2)*y0 + \
+            (1+2*(x-x1)/(x0-x1))*((x-x0)/(x1-x0)**2)*y1 + \
+            (x-x0)*(((x-x1)/(x0-x1))**2)*yDer0 + \
+            (x-x1)*(((x-x0)/(x1-x0))**2)*yDer1
 
     # Used to generate Lagrange basis functions
     # 用于生成拉格朗日基函数
