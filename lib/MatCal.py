@@ -95,3 +95,13 @@ def vectorToMat(vector: list) -> list:
         for i in range(len(vector)):
             mat.append([vector[i]])
         return mat
+
+
+def matTran(mat: list) -> list:
+    row: int = len(mat)
+    col: int = len(mat[0])
+    returnMat = init.Matrix(col, row)
+    for i in range(row):
+        for j in range(col):
+            returnMat[j][i] = mat[i][j]
+    return returnMat
