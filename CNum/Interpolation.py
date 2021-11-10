@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 import lib.Init as init
+import lib.MatCal as mc
+from CNum.TriDecomposition import TriDecomposition as td
 
 
 class Interpolation(object):
     def __init__(self,
                  xList: list = [],
-                 yList: list = [],
-                 yDer1th: list = []) -> None:
+                 yList: list = []) -> None:
         self._xList = xList
         self._yList = yList
-        self._yDer1th = yDer1th
         self._len = len(xList)
 
     def setKPoints(self, KnowPoints: list) -> None:
         self._xList = KnowPoints[0]
         self._yList = KnowPoints[1]
-        self._yDer1th = KnowPoints[2]
 
     def setListX(self, xList: list) -> None:
         self._xList = xList
@@ -29,12 +28,6 @@ class Interpolation(object):
 
     def getListY(self) -> list:
         return self._yList
-
-    def setListYDer1th(self, yDer1th: list) -> None:
-        self._yDer1th = yDer1th
-
-    def getListYDer1th(self) -> list:
-        return self._yDer1th
 
     # Lagrangian Interpolation Method
     # 拉格朗日插值法
@@ -56,17 +49,30 @@ class Interpolation(object):
 
     # Hermite Interpolation Method
     # 埃尔米特三次插值
-    def Hermite(self, x: float) -> float:
+    def Hermite(self, x: float, yDer1th: list) -> float:
         x0 = self._xList[0]
         x1 = self._xList[1]
         y0 = self._xList[0]
         y1 = self._xList[1]
-        yDer0 = self._xList[0]
-        yDer1 = self._xList[1]
+        yDer0 = yDer1th[0]
+        yDer1 = yDer1th[1]
         return (1+2*(x-x0)/(x1-x0))*((x-x1)/(x0-x1)**2)*y0 + \
             (1+2*(x-x1)/(x0-x1))*((x-x0)/(x1-x0)**2)*y1 + \
             (x-x0)*(((x-x1)/(x0-x1))**2)*yDer0 + \
             (x-x1)*(((x-x0)/(x1-x0))**2)*yDer1
+
+    # Spline Interpolation Method
+    # 三次样条插值
+    def Spline(self, x: float, flag: int, endpointDer: list = []) -> float:
+        sdm: list = self._secondDerMat(endpointDer, flag)
+        j: int = self._findIndex(x)
+        hj: float = self._xList[j+1] - self._xList[j]
+        return sdm[j+1]*((x-self._xList[j])**3)/(6*hj) -\
+            sdm[j]*((x-self._xList[j+1])**3)/(6*hj) +\
+            (self._yList[j+1]-(sdm[j+1]*hj**2)/6) *\
+            ((x-self._xList[j])/hj) -\
+            (self._yList[j]-(sdm[j]*hj**2)/6) *\
+            ((x-self._xList[j+1])/hj)
 
     # Used to generate Lagrange basis functions
     # 用于生成拉格朗日基函数
@@ -102,3 +108,58 @@ class Interpolation(object):
             if i != index:
                 xSubX *= x - self._xList[i]
         return xSubX
+
+    def _secondDerMat(self, endpointDer: list, flag: int) -> list:
+        a = init.vector(self._len)
+        b = init.vector(self._len)
+        c = init.vector(self._len)
+        for j in range(1, self._len-1):
+            hjs1: float = self._xList[j] - self._xList[j-1]
+            hj: float = self._xList[j+1] - self._xList[j]
+            a[j] = hjs1/(hjs1+hj)
+            b[j] = hj/(hjs1+hj)
+            c[j] = 6*((self._yList[j+1]-self._yList[j])/hj -
+                      (self._yList[j]-self._yList[j-1])/hjs1)/(hjs1+hj)
+        if flag == 1:
+            b[0] = 1
+            a[self._len-1] = 1
+            h0 = self._xList[1]-self._xList[0]
+            hns1 = self._xList[self._len-1]-self._xList[self._len-2]
+            c[0] = (6/h0)*((self._yList[1]-self._yList[0])/h0-endpointDer[0])
+            c[self._len-1] = (6/hns1)*(endpointDer[-1] -
+                                       (self._yList[self._len-1] -
+                                       self._yList[self._len-2])/hns1)
+            augMat = init.AugMat(self._coeMat(a, b, 1), mc.vectorToMat(c))
+            MList = td(augMat).chase()
+            return MList
+        elif flag == 2:
+            pass
+        elif flag == 3:
+            pass
+
+    def _findIndex(self, x: float) -> int:
+        for i in range(self._len-1):
+            if x >= self._xList[i] and x <= self._xList[i+1]:
+                return i
+            elif x < min(self._xList):
+                return 0
+            elif x > max(self._xList):
+                return self._len-2
+
+    def _coeMat(self, alpha: list, beta: list, flag: int) -> list:
+        if flag == 1:
+            size = self._len
+            resultMat = init.Identity(size, 2)
+            for i in range(size):
+                if i == 0:
+                    resultMat[i][i+1] = beta[i]
+                elif i == size - 1:
+                    resultMat[i][i-1] = alpha[i]
+                else:
+                    resultMat[i][i-1] = alpha[i]
+                    resultMat[i][i+1] = beta[i]
+            return resultMat
+        elif flag == 2:
+            pass
+        elif flag == 3:
+            pass
