@@ -63,7 +63,9 @@ class Interpolation(object):
 
     # Spline Interpolation Method
     # 三次样条插值
-    def Spline(self, x: float, flag: int, endpointDer: list = []) -> float:
+    def CubicSpline(self, x: float,
+                    flag: int,
+                    endpointDer: list = []) -> float:
         sdm: list = self._secondDerMat(endpointDer, flag)
         j: int = self._findIndex(x)
         hj: float = self._xList[j+1] - self._xList[j]
