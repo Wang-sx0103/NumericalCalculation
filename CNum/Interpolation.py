@@ -113,6 +113,7 @@ class Interpolation(object):
         a = init.vector(self._len)
         b = init.vector(self._len)
         c = init.vector(self._len)
+        MList = init.vector(self._len)
         for j in range(1, self._len-1):
             hjs1: float = self._xList[j] - self._xList[j-1]
             hj: float = self._xList[j+1] - self._xList[j]
@@ -120,22 +121,42 @@ class Interpolation(object):
             b[j] = hj/(hjs1+hj)
             c[j] = 6*((self._yList[j+1]-self._yList[j])/hj -
                       (self._yList[j]-self._yList[j-1])/hjs1)/(hjs1+hj)
-        if flag == 1:
+        if flag == 0:
             b[0] = 1
-            a[self._len-1] = 1
+            a[-1] = 1
             h0 = self._xList[1]-self._xList[0]
-            hns1 = self._xList[self._len-1]-self._xList[self._len-2]
+            hns1 = self._xList[-1]-self._xList[-2]
             c[0] = (6/h0)*((self._yList[1]-self._yList[0])/h0-endpointDer[0])
-            c[self._len-1] = (6/hns1)*(endpointDer[-1] -
-                                       (self._yList[self._len-1] -
-                                       self._yList[self._len-2])/hns1)
-            augMat = init.AugMat(self._coeMat(a, b, 1), mc.vectorToMat(c))
+            c[-1] = (6/hns1)*(endpointDer[-1] - (self._yList[-1] -
+                                                 self._yList[-2])/hns1)
+            augMat = init.AugMat(self._coeMat(a, b, flag), mc.vectorToMat(c))
             MList = td(augMat).chase()
             return MList
         elif flag == 2:
-            pass
-        elif flag == 3:
-            pass
+            a = a[1:]
+            b = b[1:]
+            c = c[1:]
+            c[0] = a[0]*endpointDer[0]
+            c[-2] = c[-2] - b[-2]*endpointDer[-1]
+            augMat = init.AugMat(self._coeMat(a, b, flag), mc.vectorToMat(c))
+            MList[1:-1] = td(augMat).chase()
+            MList[0] = endpointDer[0]
+            MList[-1] = endpointDer[-1]
+            return MList
+        elif flag == 1:
+            a = a[1:]
+            b = b[1:]
+            c = c[1:]
+            h0 = self._xList[1]-self._xList[0]
+            hns1 = self._xList[-1]-self._xList[-2]
+            a[-1] = hns1/(h0 + hns1)
+            b[-1] = h0/(h0 + hns1)
+            c[-1] = (6/h0+hns1)*((self._yList[1] - self._yList[0])/h0 -
+                                 (self._yList[-1] - self._yList[-2])/hns1)
+            augMat = init.AugMat(self._coeMat(a, b, flag), mc.vectorToMat(c))
+            MList[1:] = td(augMat).chase()
+            MList[0] = endpointDer[0]
+            return MList
 
     def _findIndex(self, x: float) -> int:
         for i in range(self._len-1):
@@ -147,19 +168,17 @@ class Interpolation(object):
                 return self._len-2
 
     def _coeMat(self, alpha: list, beta: list, flag: int) -> list:
+        size = self._len - flag
+        resultMat = init.Identity(size, 2)
+        for i in range(size):
+            if i == 0:
+                resultMat[i][i+1] = beta[i]
+            elif i == size - 1:
+                resultMat[i][i-1] = alpha[i]
+            else:
+                resultMat[i][i-1] = alpha[i]
+                resultMat[i][i+1] = beta[i]
         if flag == 1:
-            size = self._len
-            resultMat = init.Identity(size, 2)
-            for i in range(size):
-                if i == 0:
-                    resultMat[i][i+1] = beta[i]
-                elif i == size - 1:
-                    resultMat[i][i-1] = alpha[i]
-                else:
-                    resultMat[i][i-1] = alpha[i]
-                    resultMat[i][i+1] = beta[i]
-            return resultMat
-        elif flag == 2:
-            pass
-        elif flag == 3:
-            pass
+            resultMat[0][-1] = alpha[0]
+            resultMat[-1][0] = beta[-1]
+        return resultMat
