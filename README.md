@@ -1,9 +1,9 @@
 [TOC]
 
-![CNum](/branding/logo/primary/CNumlogo.jpg)
+![CNum](/branding/logo/logomark/CNumlogo.jpg)
 # **NumericalCalculation**
 
-  A library related to common **numerical calculations**  
+  A library related to common **numerical calculations**.  
 
 ## License
 NuericalCalculation is released under a  [GPLv3 license](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/LICENSE). 
@@ -16,8 +16,8 @@ NuericalCalculation is released under a  [GPLv3 license](https://github.com/Wang
 ```
 ## Usage and function
 ### CNum
-This package contains classes that users use directly  
-Then, we will introduce the functions of each class  
+This package contains classes that users use directly.  
+Then, we will introduce the functions of each class.  
 
 #### Elimination
 - Calling Class
@@ -64,9 +64,9 @@ import CNum.TriDecomposition as td
 - Member function
 
 ### lib
-This package is designed to implement the functions of CNum package, but users can still use it  
-The contents of this package are function sets  
-Then, we will introduce the functions of each function set   
+This package is designed to implement the functions of CNum package, but users can still use it.  
+The contents of this package are function sets.  
+Then, we will introduce the functions of each function set.   
 
 #### Init
 
