@@ -90,7 +90,7 @@ class Elimination(object):
                 self._augMatrix[i][i]
         return self._changeXList()
 
-    def _changeOrder(self, column: int) -> list:
+    def _changeOrder(self, column: int) -> None:
         temp = []
         for i in range(column, self._len):
             temp.append(abs(self._augMatrix[i][column]))
@@ -98,7 +98,7 @@ class Elimination(object):
         self._augMatrix[column], self._augMatrix[maxColumn] = \
             self._augMatrix[maxColumn], self._augMatrix[column]
 
-    def _allChangeOrder(self, column: int) -> list:
+    def _allChangeOrder(self, column: int) -> None:
         max = 0
         rowMax = 0         # 最大值的行索引
         listMax = 0        # 最大值的列索引
