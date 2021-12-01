@@ -5,8 +5,8 @@ __pycache__/
 temp/
 
 # Test Module
-test.py
-test1.py
-test2.py
-test3.py
+testDirect.py
+testIteration.py
+testPower.py
+testInterpolation.py
 testMatrix.py
