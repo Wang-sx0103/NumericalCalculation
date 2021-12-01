@@ -1,9 +1,27 @@
 # -*- coding: utf-8 -*-
+'''
+Elimination
+    This class contains several elimination methods
+    for solving linear equations.
+Function list
+    gauss:Gauss elimination method.
+    columnEliminate:(Elimination with Maximal Column Pivoting.
+    completeEliminate:complete pivoting.
+Others:
+
+'''
 import lib.Init as init
 
 
 class Elimination(object):
+    '''
+    This class contains several common elimination methods
+    for solving linear equations
+    '''
     def __init__(self, augMatrix: list) -> None:
+        '''
+        You must give an augmented matrix in the constructor
+        '''
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
         self._xIndex = init.vectorIndex(self._len)
@@ -36,9 +54,9 @@ class Elimination(object):
                 self._augMatrix[i][i]
         return self._xList
 
-    # 列主元素高斯消元法
+    # 列主元素消元法
 
-    def orderEliminateGauss(self) -> list:
+    def columnEliminate(self) -> list:
         for k in range(self._len):
             self._changeOrder(k)
             for i in range(k, self._len-1):
@@ -65,7 +83,7 @@ class Elimination(object):
 
     # 全主元素法
 
-    def completeEliminateGauss(self) -> list:
+    def completeEliminate(self) -> list:
         for k in range(self._len):
             self._allChangeOrder(k)
             for i in range(k, self._len-1):
@@ -100,8 +118,8 @@ class Elimination(object):
 
     def _allChangeOrder(self, column: int) -> None:
         max = 0
-        rowMax = 0         # 最大值的行索引
-        listMax = 0        # 最大值的列索引
+        rowMax = 0
+        listMax = 0
         for i in range(column, self._len):
             for j in range(column, self._len):
                 if abs(self._augMatrix[i][j]) > max:

@@ -1,9 +1,26 @@
 # -*- coding: utf-8 -*-
+'''
+SquareRoot
+    This class contains several square root methods for
+    solving linear equations that it contains a coefficient matrix
+    with positive definite symmetry.
+Function list:
+    Cholesky: Cholesky factorization.
+    LDLT: Improved square root method.
+'''
 import lib.Init as init
 
 
 class SquareRoot(object):
+    '''
+    This class contains several square root methods for
+    solving linear equations that it contains a coefficient matrix
+    with positive definite symmetry
+    '''
     def __init__(self, augMatrix: list) -> None:
+        '''
+        You must give an augmented matrix in the constructor
+        '''
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
         self._LMatrix = init.LMat(self._len)
@@ -15,7 +32,7 @@ class SquareRoot(object):
 
     # Cholesky追赶法
 
-    def CholeskyDecomposition(self) -> list:
+    def Cholesky(self) -> list:
         for i in range(self._len):
             tempSumL = 0
             tempSumY = 0

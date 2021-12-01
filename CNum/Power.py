@@ -1,17 +1,42 @@
 # -*- coding: utf-8 -*-
-
+'''
+Power
+    This class contains several power methods in order to
+    solve the maximum eigenvalue according to the mold and
+    the corresponding eigenvector
+Function list
+    NorPower: Normalized power method
+    OriginShift: Origin shift method
+    Aitken: Aitken acceleration
+    InversePower: Inverse power methond
+'''
 import lib.MatCal as mc
 import lib.Init as init
 import CNum.TriDecomposition as td
 
 
 class Power(object):
+    '''
+    This class contains several power methods in order to
+    solve the maximum eigenvalue according to the mold and
+    the corresponding eigenvector
+    '''
     def __init__(self,
                  Matrix: list = [],
                  xList: list = [],
                  iteraNum: int = 100,
                  threshold: float = 0.000001) -> None:
-
+        '''
+        Matrix: You need to provide an matrix, but this is't necessary.
+        XList: You need to provide an initial value of X vector.
+        If you do not provide the vector here,
+        you must provide it at the function called
+        setInitEigenvectors().
+        iteraNum: You need to provide a number of iterations.
+        If you don't provide, we will default to 100.
+        threshold: You need to provide an error in ending iteration.
+        If you don't provide, we will default to 1/1000000.
+        '''
         self._matrix = Matrix
         self._row = len(Matrix)
         self._col = len(Matrix)
@@ -71,7 +96,7 @@ class Power(object):
         return round(maxEigenvalue, mantissa)
 
     # 原点移位法
-    def OriginShift(self, lambda0: float = 0, mantissa: int = 3):
+    def OriginShift(self, lambda0: float = 0, mantissa: int = 3) -> float:
         shiftMat = init.Matrix(self._row, self._col)
         shiftMat = mc.matSub(self._matrix, init.Identity(self._row, lambda0))
         iteraNum = 0
@@ -92,7 +117,7 @@ class Power(object):
         return round(maxEigenvalue + lambda0, mantissa)
 
     # Aitken加速法 Aitken acceleration
-    def AitkenAcc(self, mantissa: int = 3) -> float:
+    def Aitken(self, mantissa: int = 3) -> float:
         count = 0
         deltaNum = 1
         maxEigenvalue = 0
@@ -133,7 +158,7 @@ class Power(object):
             dtd.setAugMat(init.AugMat(shiftMat,
                                       mc.matDivNum(self._xList,
                                                    mc.absMax(self._xList, 1))))
-            self._xList = mc.vectorToMat(dtd.DirTriDecomposition())
+            self._xList = mc.vectorToMat(dtd.Doolittle())
             minEigenvalue = mc.absMax(self._xList, 1)
             deltaNum = abs(1/minEigenvalue-1/mu)
             mu = minEigenvalue

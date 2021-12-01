@@ -1,13 +1,42 @@
 # -*- coding: utf-8 -*-
+'''
+Interpolation
+    This class contains several interpolation methods in order to
+    construct the interpolation polynomial function and
+    calculate the value of the corresponding X
+Function list
+    Lagrange: Lagrangian Interpolation Method
+    Newton: Newtow Interpolation Method
+    Hermite: Hermite Interpolation Method
+    CubicSpline: Spline Interpolation Method
+Others:
+
+'''
 import lib.Init as init
 import lib.MatCal as mc
 from CNum.TriDecomposition import TriDecomposition as td
 
 
 class Interpolation(object):
+    '''
+    This class contains several interpolation methods in order to
+    construct the interpolation polynomial function and
+    calculate the value of the corresponding X
+    '''
     def __init__(self,
                  xList: list = [],
                  yList: list = []) -> None:
+        '''
+        xList: You need to provide a set of X coordinates.
+        If you do not provide the vector here,
+        you must provide it at the function called
+        setListX().
+        yList: You need to provide a set of Y coordinates.
+        If you do not provide the vector here,
+        you must provide it at the function called
+        setListY().
+        \nThe number of X coordinates must be equal to Y.
+        '''
         self._xList = xList
         self._yList = yList
         self._len = len(xList)
@@ -132,7 +161,7 @@ class Interpolation(object):
             c[-1] = (6/hns1)*(endpointDer[-1] - (self._yList[-1] -
                                                  self._yList[-2])/hns1)
             augMat = init.AugMat(self._coeMat(a, b, flag), mc.vectorToMat(c))
-            MList = td(augMat).chase()
+            MList = td(augMat).Chase()
             return MList
         elif flag == 2:
             a = a[1:]
@@ -141,7 +170,7 @@ class Interpolation(object):
             c[0] = a[0]*endpointDer[0]
             c[-2] = c[-2] - b[-2]*endpointDer[-1]
             augMat = init.AugMat(self._coeMat(a, b, flag), mc.vectorToMat(c))
-            MList[1:-1] = td(augMat).chase()
+            MList[1:-1] = td(augMat).Chase()
             MList[0] = endpointDer[0]
             MList[-1] = endpointDer[-1]
             return MList
@@ -156,7 +185,7 @@ class Interpolation(object):
             c[-1] = (6/h0+hns1)*((self._yList[1] - self._yList[0])/h0 -
                                  (self._yList[-1] - self._yList[-2])/hns1)
             augMat = init.AugMat(self._coeMat(a, b, flag), mc.vectorToMat(c))
-            MList[1:] = td(augMat).chase()
+            MList[1:] = td(augMat).Chase()
             MList[0] = endpointDer[0]
             return MList
 

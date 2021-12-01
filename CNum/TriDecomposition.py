@@ -1,10 +1,25 @@
 # -*- coding: utf-8 -*-
+'''
+TriDecomposition
+    This class contains several triangular decomposition methods
+    for solving linear equations.
+Function list:
+    Doolittle: Doolittle decomposition method.
+    Chase: Chasedecomposition method.
+'''
 import lib.Init as init
 
 
 class TriDecomposition(object):
-    def __init__(self, augMatrix: list) -> None:
-        self._augMatrix = augMatrix
+    '''
+    This class contains several triangular decomposition methods
+    for solving linear equations
+    '''
+    def __init__(self, augMat: list) -> None:
+        '''
+        You must give an augmented matrix in the constructor
+        '''
+        self._augMatrix = augMat
         self._len = len(self._augMatrix)
         self._LMatrix = init.LMat(self._len)
         self._UMatrix = init.UMat(self._augMatrix)
@@ -25,7 +40,7 @@ class TriDecomposition(object):
 
     # 直接三角分解法
 
-    def DirTriDecomposition(self) -> list:
+    def Doolittle(self) -> list:
         self._yList[0] = self._augMatrix[0][-1]
         for i in range(self._len):
             tempSumY = 0
@@ -57,7 +72,7 @@ class TriDecomposition(object):
 
     # 追赶法
 
-    def chase(self) -> list:
+    def Chase(self) -> list:
         self._UMatrix[0][0] = self._augMatrix[0][0]
         self._yList[0] = self._augMatrix[0][-1]
         for i in range(1, self._len):

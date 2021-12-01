@@ -1,13 +1,37 @@
 # -*- coding: utf-8 -*-
 
+'''
+Iteration
+    This class contains several iterative methods for solving linear equations.
+Function list
+    Jacobi: Jacob Iterative method.
+    GaussSeidel: Gauss-Seidel Iteration.
+    SOR: Successive Over - Relaxation Iteration.
+'''
+
 
 class Iteration(object):
+    '''
+    This class contains several iterative methods for solving linear equations
+    '''
     def __init__(self,
                  augMatrix: list = [],
                  xList: list = [],
                  iteraNum: int = 100,
                  threshold: float = 0.000001,
                  relaxaFactor: float = 1) -> None:
+        '''
+        augMatrix: You need to provide an augmented matrix,
+        but this is't necessary.
+        xList: You need to provide an iterative initial value of X vector,
+        but this is't necessary.
+        iteraNum: You need to provide a number of iterations.
+        If you don't provide, we will default to 100.
+        threshold: You need to provide an error in ending iteration.
+        If you don't provide, we will default to 1/1000000.
+        relaxaFactor: When you use the Successive Over-Relaxation Iteration,
+        you need to provide a relaxation factor
+        '''
         self._augMatrix = augMatrix
         self._len = len(self._augMatrix)
         self._xList = xList
