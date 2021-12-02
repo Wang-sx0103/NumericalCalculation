@@ -3,14 +3,12 @@
 Interpolation
     This class contains several interpolation methods in order to
     construct the interpolation polynomial function and
-    calculate the value of the corresponding X
+    calculate the value of the corresponding X.\n\n
 Function list
-    Lagrange: Lagrangian Interpolation Method
-    Newton: Newtow Interpolation Method
-    Hermite: Hermite Interpolation Method
-    CubicSpline: Spline Interpolation Method
-Others:
-
+    Lagrange: Lagrangian Interpolation Method.\n
+    Newton: Newtow Interpolation Method.\n
+    Hermite: Hermite Interpolation Method.\n
+    CubicSpline: Spline Interpolation Method.
 '''
 import lib.Init as init
 import lib.MatCal as mc
@@ -21,7 +19,7 @@ class Interpolation(object):
     '''
     This class contains several interpolation methods in order to
     construct the interpolation polynomial function and
-    calculate the value of the corresponding X
+    calculate the value at X-point.
     '''
     def __init__(self,
                  xList: list = [],
@@ -30,12 +28,12 @@ class Interpolation(object):
         xList: You need to provide a set of X coordinates.
         If you do not provide the vector here,
         you must provide it at the function called
-        setListX().
+        "setListX".\n
         yList: You need to provide a set of Y coordinates.
         If you do not provide the vector here,
         you must provide it at the function called
-        setListY().
-        \nThe number of X coordinates must be equal to Y.
+        "setListY".\n
+        The length of "xList" must be equal to "yList".
         '''
         self._xList = xList
         self._yList = yList
