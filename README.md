@@ -10,20 +10,25 @@ NuericalCalculation is released under a  [GPLv3 license](https://github.com/Wang
 
 ## Prerequisites
 - You must have a python 3.x interpreter
-- Installation
+- Install with pip
 ```shell
-
+pip install CNum
 ```
+- Install with setup scripts
+	- Clone or download this repository.
+	- Install the package using `python setup.py install`.
+
 ## Usage and function
 ### CNum
 This package contains classes that users use directly.  
 Then, we will introduce the functions of each class.  
 
 #### Elimination
-** This class contains several elimination methods for solving linear equations.**  
+**This class contains several elimination methods for solving linear equations.**  
+
 - Calling Class
 ```python
-from CNum.Elimination import Elimination as et
+import CNum.Elimination as et
 ```
 - Constructor
 
@@ -33,7 +38,7 @@ from CNum.Elimination import Elimination as et
 **This class contains a methods in order to construct an n-order polynomial.**  
 - Calling Class
 ```python
-from CNum.FuncAppro import FuncAppro as fa
+import CNum.FuncAppro as fa
 ```
 - Constructor
 
@@ -43,7 +48,7 @@ from CNum.FuncAppro import FuncAppro as fa
 **This class contains several interpolation methods in order to construct the interpolation polynomial function and calculate the value of the X-point.**  
 - Calling Class
 ```python
-from CNum.Interpolation import Interpolation as ip
+import CNum.Interpolation as ip
 ```
 - Constructor
 
@@ -53,7 +58,7 @@ from CNum.Interpolation import Interpolation as ip
 **This class contains several iterative methods for solving linear equations.**  
 - Calling Class
 ```python
-from CNum.Iteration import Iteration as it
+import CNum.Iteration as it
 ```
 - Constructor
 
@@ -63,7 +68,7 @@ from CNum.Iteration import Iteration as it
 **This class contains several power methods in order to solve the maximum eigenvalue according to the mold and the corresponding eigenvector**  
 - Calling Class
 ```python
-from CNum.Power import Power as pr
+import CNum.Power as pr
 ```
 - Constructor
 
@@ -73,7 +78,7 @@ from CNum.Power import Power as pr
 **This class contains several square root methods for solving linear equations that it contains a coefficient matrix with positive definite symmetry.**  
 - Calling Class
 ```python
-from CNum.SquareRoot import SquareRoot as sr
+import CNum.SquareRoot as sr
 ```
 - Constructor
 
@@ -83,7 +88,7 @@ from CNum.SquareRoot import SquareRoot as sr
 **This class contains several triangular decomposition methods for solving linear equations.**  
 - Calling Class
 ```python
-from CNum.TriDecomposition import TriDecomposition as td
+import CNum.TriDecomposition as td
 ```
 - Constructor
 
@@ -97,28 +102,28 @@ Then, we will introduce the functions of each function set.
 #### Init
 - Calling Module
 ```python
-import lib.Init as init
+import CNum.lib.Init as init
 ```
 - Function
 
 #### IsOk
 - Calling Module
 ```python
-import lib.IsOk as ok
+import CNum.lib.IsOk as ok
 ```
 - Function
 
 #### MatCal
 - Calling Module
 ```python
-import lib.MatCal as mc
+import CNum.lib.MatCal as mc
 ```
 - Function
 
 #### Matrix
 - Calling Module
 ```python
-import lib.Matrix as mat
+import CNum.martix.Matrix as mat
 ```
 - Function
 
