@@ -4,10 +4,10 @@ __pycache__/
 # Temp Files
 temp/
 
+# build folder
+build/
+CNum.egg-info/
+dist/
+
 # Test Module
-testDirect.py
-testIteration.py
-testPower.py
-testInterpolation.py
-testMatrix.py
-testFuncAppro.py
+test/
