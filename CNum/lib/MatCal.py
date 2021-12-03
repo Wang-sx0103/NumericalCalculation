@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-import lib.Init as init
-import lib.IsOk as ok
+from . import Init as init
+from . import IsOk as ok
 
 
 def matMul(mat1: list, mat2: list) -> list:

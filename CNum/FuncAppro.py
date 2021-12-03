@@ -7,8 +7,8 @@ Function list
 Others:
 
 '''
-import lib.Init as init
-from CNum.Elimination import Elimination as et
+from .lib import Init as init
+from .Elimination import Elimination as et
 
 
 class FuncAppro (object):

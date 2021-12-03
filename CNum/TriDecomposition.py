@@ -7,7 +7,7 @@ Function list:
     Doolittle: Doolittle decomposition method.
     Chase: Chasedecomposition method.
 '''
-import lib.Init as init
+from .lib import Init as init
 
 
 class TriDecomposition(object):

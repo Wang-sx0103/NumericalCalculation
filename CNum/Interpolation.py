@@ -10,9 +10,9 @@ Function list
     Hermite: Hermite Interpolation Method.\n
     CubicSpline: Spline Interpolation Method.
 '''
-import lib.Init as init
-import lib.MatCal as mc
-from CNum.TriDecomposition import TriDecomposition as td
+from .lib import Init as init
+from .lib import MatCal as mc
+from .TriDecomposition import TriDecomposition as td
 
 
 class Interpolation(object):

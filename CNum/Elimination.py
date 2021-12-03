@@ -10,7 +10,7 @@ Function list
 Others:
 
 '''
-import lib.Init as init
+from .lib import Init as init
 
 
 class Elimination(object):

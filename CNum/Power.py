@@ -10,9 +10,9 @@ Function list
     Aitken: Aitken acceleration
     InversePower: Inverse power methond
 '''
-import lib.MatCal as mc
-import lib.Init as init
-import CNum.TriDecomposition as td
+from .lib import MatCal as mc
+from .lib import Init as init
+from .TriDecomposition import TriDecomposition as td
 
 
 class Power(object):
@@ -146,7 +146,7 @@ class Power(object):
     def InversePower(self, appro: float = 0, mantissa: int = 3) -> float:
         shiftMat = init.Matrix(self._row, self._col)
         shiftMat = mc.matSub(self._matrix, init.Identity(self._row, appro))
-        dtd = td.TriDecomposition(shiftMat)
+        dtd = td(shiftMat)
         count = 0
         deltaNum = 1
         minEigenvalue = 0

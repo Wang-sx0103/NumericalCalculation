@@ -8,7 +8,7 @@ Function list:
     Cholesky: Cholesky factorization.
     LDLT: Improved square root method.
 '''
-import lib.Init as init
+from .lib import Init as init
 
 
 class SquareRoot(object):
