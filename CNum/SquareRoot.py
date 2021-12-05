@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-SquareRoot
-    This class contains several square root methods for
-    solving linear equations that it contains a coefficient matrix
-    with positive definite symmetry.
-Function list:
-    Cholesky: Cholesky factorization.
-    LDLT: Improved square root method.
+This module contains a class with the same name.
 '''
 from .lib import Init as init
 
@@ -15,24 +9,46 @@ class SquareRoot(object):
     '''
     This class contains several square root methods for
     solving linear equations that it contains a coefficient matrix
-    with positive definite symmetry
+    with positive definite symmetry.
     '''
-    def __init__(self, augMatrix: list) -> None:
+    def __init__(self, augMat: list = []) -> None:
         '''
-        You must give an augmented matrix in the constructor
+        augMat: You need to provide an augmented matrix in the constructor.
+        If you do not provide the augMatrix here,
+        you must provide it at the function called
+        setAugMat().\n
         '''
-        self._augMatrix = augMatrix
+        self._augMatrix = augMat
         self._len = len(self._augMatrix)
         self._LMatrix = init.LMat(self._len)
         self._xList = init.vector(self._len)
         self._yList = init.vector(self._len)
 
+    def setAugMat(self, augMat) -> None:
+        '''
+        augMat: You can provide an augmented matrix.
+        '''
+        self._augMatrix = augMat
+
+    def getAugMat(self) -> list:
+        '''
+        return: We will return the augmented matrix.
+        '''
+        return self._augMatrix
+
     def getLMat(self) -> list:
+        '''
+        return: We will return the L matrix.
+        '''
         return self._LMatrix
 
-    # Cholesky追赶法
+    # Cholesky factorization
 
     def Cholesky(self) -> list:
+        '''
+        Cholesky factorization.\n
+        return: We will return the solution of the equations as a list.
+        '''
         for i in range(self._len):
             tempSumL = 0
             tempSumY = 0
@@ -56,9 +72,13 @@ class SquareRoot(object):
             self._xList[k] = (self._yList[k] - tempSumX)/self._LMatrix[k][k]
         return self._xList
 
-    # 改进平方根法
+    # Improved square root method
 
     def LDLT(self) -> list:
+        '''
+        Improved square root method.\n
+        return: We will return the solution of the equations as a list.
+        '''
         d = init.vector(self._len)
         for i in range(self._len):
             tempSumd = 0

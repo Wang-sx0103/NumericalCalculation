@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Power
-    This class contains several power methods in order to
-    solve the maximum eigenvalue according to the mold and
-    the corresponding eigenvector
-Function list
-    NorPower: Normalized power method
-    OriginShift: Origin shift method
-    Aitken: Aitken acceleration
-    InversePower: Inverse power methond
+This module contains a class with the same name.
 '''
 from .lib import MatCal as mc
 from .lib import Init as init
@@ -18,8 +10,8 @@ from .TriDecomposition import TriDecomposition as td
 class Power(object):
     '''
     This class contains several power methods in order to
-    solve the maximum eigenvalue according to the mold and
-    the corresponding eigenvector
+    solve the maximum or minimum eigenvalue according to the mold and
+    the corresponding eigenvector.
     '''
     def __init__(self,
                  Matrix: list = [],
@@ -27,13 +19,16 @@ class Power(object):
                  iteraNum: int = 100,
                  threshold: float = 0.000001) -> None:
         '''
-        Matrix: You need to provide an matrix, but this is't necessary.
-        XList: You need to provide an initial value of X vector.
+        Matrix: You need to provide an matrix.
+        If you do not provide the Matrix here,
+        you must provide it at the function called
+        setMatrix().\n
+        XList: You need to provide an initialization eigenvector.
         If you do not provide the vector here,
         you must provide it at the function called
-        setInitEigenvectors().
+        setInitEigenvectors().\n
         iteraNum: You need to provide a number of iterations.
-        If you don't provide, we will default to 100.
+        If you don't provide, we will default to 100.\n
         threshold: You need to provide an error in ending iteration.
         If you don't provide, we will default to 1/1000000.
         '''
@@ -45,39 +40,66 @@ class Power(object):
         self._threshold = threshold
 
     def setMatrix(self, Matrix: list) -> None:
+        '''
+        Matrix: You need to provide an matrix.
+        '''
         self._matrix = Matrix
         self._row = len(Matrix)
         self._col = len(Matrix)
 
     def getMatrix(self, mantissa: int = 3) -> list:
+        '''
+        return: We will return the Matrix.
+        '''
         for i in range(self._row):
             for j in range(self._col):
                 self._matrix[i][j] = round(self._matrix[i][j], mantissa)
         return self._matrix
 
     def setInitEigenvectors(self, xList: list) -> None:
+        '''
+        xList: You need to provide an initialization eigenvector.
+        '''
         self._xList = mc.vectorToMat(xList)
 
     def getEigenvectors(self, mantissa: int = 3) -> list:
+        '''
+        return: We will return the calculated eigenvector.
+        '''
         for i in range(self._row):
             for j in range(len(self._xList[0])):
                 self._xList[i][j] = round(self._xList[i][j], mantissa)
         return self._xList
 
     def setIteraNum(self, iteraNum: int) -> None:
+        '''
+        iteraNum: You need to provide the number of iterations.
+        '''
         self._iteraNum = iteraNum
 
     def getIteraNum(self) -> float:
+        '''
+        return: We will return the number of iterations.
+        '''
         return self._iteraNum
 
     def setThreshold(self, threshold: float) -> None:
+        '''
+        threshold: You need to provide an error in ending iteration.
+        '''
         self._threshold = threshold
 
     def getThreshold(self) -> float:
+        '''
+        retturn: We will return the error in ending iteration.
+        '''
         return self._threshold
 
-    # 规范化幂法
-    def NorPower(self, mantissa: int = 3) -> float:
+    def NorPower(self) -> float:
+        '''
+        Normalized power method.
+        return: We will return the maximum eigenvalue according to the mold.\n
+        '''
         count = 0
         deltaNum = 1
         maxEigenvalue = 0
@@ -93,10 +115,13 @@ class Power(object):
             deltaNum = abs(maxEigenvalue-mu)
             mu = maxEigenvalue
             count += 1
-        return round(maxEigenvalue, mantissa)
+        return maxEigenvalue
 
-    # 原点移位法
-    def OriginShift(self, lambda0: float = 0, mantissa: int = 3) -> float:
+    def OriginShift(self, lambda0: float = 0) -> float:
+        '''
+        Origin shift method.\n
+        return: We will return the maximum eigenvalue according to the mold.\n
+        '''
         shiftMat = init.Matrix(self._row, self._col)
         shiftMat = mc.matSub(self._matrix, init.Identity(self._row, lambda0))
         iteraNum = 0
@@ -114,10 +139,13 @@ class Power(object):
             deltaNum = abs(maxEigenvalue-mu)
             mu = maxEigenvalue
             iteraNum += 1
-        return round(maxEigenvalue + lambda0, mantissa)
+        return maxEigenvalue + lambda0
 
-    # Aitken加速法 Aitken acceleration
-    def Aitken(self, mantissa: int = 3) -> float:
+    def Aitken(self) -> float:
+        '''
+        Aitken acceleration.\n
+        return: We will return the maximum eigenvalue according to the mold.\n
+        '''
         count = 0
         deltaNum = 1
         maxEigenvalue = 0
@@ -140,10 +168,13 @@ class Power(object):
             alpha1 = alpha2
             mu = maxEigenvalue
             count += 1
-        return round(maxEigenvalue, mantissa)
+        return maxEigenvalue
 
-    # 反幂法 Inverse power methond
-    def InversePower(self, appro: float = 0, mantissa: int = 3) -> float:
+    def InversePower(self, appro: float = 0) -> float:
+        '''
+        Inverse power methond.\n
+        return: We will return the minimum eigenvalue according to the mold.\n
+        '''
         shiftMat = init.Matrix(self._row, self._col)
         shiftMat = mc.matSub(self._matrix, init.Identity(self._row, appro))
         dtd = td(shiftMat)
@@ -164,4 +195,4 @@ class Power(object):
             mu = minEigenvalue
             count += 1
         self._xList = mc.matDivNum(self._xList, mc.absMax(self._xList, 1))
-        return round(appro + 1/minEigenvalue, mantissa)
+        return appro + 1/minEigenvalue

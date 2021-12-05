@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Interpolation
-    This class contains a methods in order to construct an n-order polynomial.
-Function list
-    PolyFitting: Fitting an n-order polynomial.
-Others:
-
+This module contains a class with the same name.
 '''
 from .lib import Init as init
 from .Elimination import Elimination as et
@@ -20,9 +15,7 @@ class FuncAppro (object):
                  yList: list = []) -> None:
         '''
         xList: You need to provide a set of x-points.
-        If you do not provide the vector here,
-        you must provide it at the function called
-        setListX().\n
+        need to provide
         yList: You need to provide a set of y-points.
         If you do not provide the vector here,
         you must provide it at the function called
@@ -66,6 +59,7 @@ class FuncAppro (object):
 
     def PolyFitting(self, order: int) -> list:
         '''
+        Fitting an n-order polynomial.\n
         order: It represents the order of the fitting polynomial,
         you must provide an integer less than the number of coordinates.\n
         return: We will return a list with a length of "order"+1.\n

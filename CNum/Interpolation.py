@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Interpolation
-    This class contains several interpolation methods in order to
-    construct the interpolation polynomial function and
-    calculate the value of the corresponding X.\n\n
-Function list
-    Lagrange: Lagrangian Interpolation Method.\n
-    Newton: Newtow Interpolation Method.\n
-    Hermite: Hermite Interpolation Method.\n
-    CubicSpline: Spline Interpolation Method.
+This module contains a class with the same name.
 '''
 from .lib import Init as init
 from .lib import MatCal as mc
@@ -28,11 +20,11 @@ class Interpolation(object):
         xList: You need to provide a set of X coordinates.
         If you do not provide the vector here,
         you must provide it at the function called
-        "setListX".\n
+        "setListX" or "setKPoints".\n
         yList: You need to provide a set of Y coordinates.
         If you do not provide the vector here,
         you must provide it at the function called
-        "setListY".\n
+        "setListY" or "setKPoints".\n
         The length of "xList" must be equal to "yList".
         '''
         self._xList = xList
@@ -40,25 +32,46 @@ class Interpolation(object):
         self._len = len(xList)
 
     def setKPoints(self, KnowPoints: list) -> None:
+        '''
+        knowPoints: You can provide a list of 2 rows and N columns.
+        '''
         self._xList = KnowPoints[0]
         self._yList = KnowPoints[1]
 
     def setListX(self, xList: list) -> None:
+        '''
+        xList: You can provide a set of x-points.
+        '''
         self._xList = xList
         self._len = len(xList)
 
     def getListX(self) -> list:
+        '''
+        return: We will return a list contain all x-points.
+        '''
         return self._xList
 
     def setListY(self, yList: list) -> None:
+        '''
+        yList: You can provide a set of y-points.
+        '''
         self._yList = yList
 
     def getListY(self) -> list:
+        '''
+        return: We will return a list contain all x-points.
+        '''
         return self._yList
 
     # Lagrangian Interpolation Method
     # 拉格朗日插值法
     def Lagrange(self, x: float) -> float:
+        '''
+        Lagrangian Interpolation Method.\n
+        x: You must provide a real number.\n
+        return: We will return the value at x-point
+        calculated by this interpolation method.
+        '''
         self._l = self._LagIBF(x)
         L = 0
         for i in range(self._len):
@@ -68,6 +81,12 @@ class Interpolation(object):
     # Newtow Interpolation Method
     # 牛顿插值法
     def Newton(self, x: float) -> float:
+        '''
+        Newtow Interpolation Method.\n
+        x: You must provide a real number
+        return: We will return the value at x-point
+        calculated by this interpolation method.
+        '''
         self._diffQuo = self._DiffQuotient()
         N = self._diffQuo[0]
         for i in range(1, self._len):
@@ -77,6 +96,14 @@ class Interpolation(object):
     # Hermite Interpolation Method
     # 埃尔米特三次插值
     def Hermite(self, x: float, yDer1th: list) -> float:
+        '''
+        Hermite Interpolation Method.\n
+        x: You must provide a real number.\n
+        yDer1th: You need to provide a set of first derivative values
+        at both ends of the XList in a list.
+        return: We will return the value at x  point
+        calculated by this interpolation method.
+        '''
         x0 = self._xList[0]
         x1 = self._xList[1]
         y0 = self._xList[0]
@@ -93,6 +120,19 @@ class Interpolation(object):
     def CubicSpline(self, x: float,
                     flag: int,
                     endpointDer: list = []) -> float:
+        '''
+        Spline Interpolation Method.\n
+        This method constructs the interpolation function
+        through the three-rotations equation.\n
+        flag: First derivative value at given two end points.\n
+            0: First derivative value at given two end points.
+            1: Periodic function.
+            2: Second derivative value at given two end points.\n
+        endPointDer:  You need to provide a set of derivative values
+        at both ends of the XList in a list.\n
+        return: We will return the value at x point
+        calculated by this interpolation method.
+        '''
         sdm: list = self._secondDerMat(endpointDer, flag)
         j: int = self._findIndex(x)
         hj: float = self._xList[j+1] - self._xList[j]
@@ -165,7 +205,7 @@ class Interpolation(object):
             a = a[1:]
             b = b[1:]
             c = c[1:]
-            c[0] = a[0]*endpointDer[0]
+            c[0] = c[0] - a[0]*endpointDer[0]
             c[-2] = c[-2] - b[-2]*endpointDer[-1]
             augMat = init.AugMat(self._coeMat(a, b, flag), mc.vectorToMat(c))
             MList[1:-1] = td(augMat).Chase()

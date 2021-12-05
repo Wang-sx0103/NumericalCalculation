@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Elimination
-    This class contains several elimination methods
-    for solving linear equations.
-Function list
-    gauss:Gauss elimination method.
-    columnEliminate:(Elimination with Maximal Column Pivoting.
-    completeEliminate:complete pivoting.
-Others:
-
+This module contains a class with the same name.
 '''
 from .lib import Init as init
 
@@ -16,21 +8,40 @@ from .lib import Init as init
 class Elimination(object):
     '''
     This class contains several common elimination methods
-    for solving linear equations
+    for solving linear equations.
     '''
-    def __init__(self, augMatrix: list) -> None:
+    def __init__(self, augMat: list = []) -> None:
         '''
-        You must give an augmented matrix in the constructor
+        augMat: You need to provide an augmented matrix in the constructor.
+        If you do not provide the augMatrix here,
+        you must provide it at the function called
+        setAugMat().\n
         '''
-        self._augMatrix = augMatrix
+        self._augMatrix = augMat
         self._len = len(self._augMatrix)
         self._xIndex = init.vectorIndex(self._len)
         self._xList = init.vector(self._len)
         self._errorList = []
 
-    # 直接使用高斯消元法
+    def setAugMat(self, augMat) -> None:
+        '''
+        augMat: You can provide an augmented matrix.
+        '''
+        self._augMatrix = augMat
+
+    def getAugMat(self) -> list:
+        '''
+        return: We will return an augmented matrix.
+        '''
+        return self._augMatrix
+
+    # Gauss elimination method
 
     def gauss(self) -> list:
+        '''
+        Gauss elimination method.\n
+        return: We will return the solution of the equations as a list.
+        '''
         for k in range(self._len):
             for i in range(k, self._len-1):
                 if round(self._augMatrix[k][k], 5) == 0.00000:
@@ -54,9 +65,13 @@ class Elimination(object):
                 self._augMatrix[i][i]
         return self._xList
 
-    # 列主元素消元法
+    # Elimination with Maximal Column Pivoting.
 
     def columnEliminate(self) -> list:
+        '''
+        Elimination with Maximal Column Pivoting.\n
+        return: We will return the solution of the equations as a list.
+        '''
         for k in range(self._len):
             self._changeOrder(k)
             for i in range(k, self._len-1):
@@ -81,9 +96,13 @@ class Elimination(object):
                 self._augMatrix[i][i]
         return self._xList
 
-    # 全主元素法
+    # complete pivoting.
 
     def completeEliminate(self) -> list:
+        '''
+        complete pivoting.\n
+        return: We will return the solution of the equations as a list.
+        '''
         for k in range(self._len):
             self._allChangeOrder(k)
             for i in range(k, self._len-1):

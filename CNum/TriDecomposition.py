@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-TriDecomposition
-    This class contains several triangular decomposition methods
-    for solving linear equations.
-Function list:
-    Doolittle: Doolittle decomposition method.
-    Chase: Chasedecomposition method.
+This module contains a class with the same name.
 '''
 from .lib import Init as init
 
@@ -13,11 +8,14 @@ from .lib import Init as init
 class TriDecomposition(object):
     '''
     This class contains several triangular decomposition methods
-    for solving linear equations
+    for solving linear equations.
     '''
-    def __init__(self, augMat: list) -> None:
+    def __init__(self, augMat: list = []) -> None:
         '''
-        You must give an augmented matrix in the constructor
+        augMat: You need to provide an augmented matrix in the constructor.
+        If you do not provide the augMatrix here,
+        you must provide it at the function called
+        setAugMat().\n
         '''
         self._augMatrix = augMat
         self._len = len(self._augMatrix)
@@ -27,20 +25,36 @@ class TriDecomposition(object):
         self._yList = init.vector(self._len)
 
     def setAugMat(self, augMat: list) -> None:
+        '''
+        augMat: You can provide an augmented matrix.
+        '''
         self._augMatrix = augMat
 
     def getAugMat(self) -> list:
+        '''
+        return: We will return the augmented matrix.
+        '''
         return self._augMatrix
 
     def getLMat(self) -> list:
+        '''
+        return: We will return the L matrix.
+        '''
         return self._LMatrix
 
     def getUMat(self) -> list:
+        '''
+        return: We will return the U matrix.
+        '''
         return self._UMatrix
 
-    # 直接三角分解法
+    # Doolittle decomposition method
 
     def Doolittle(self) -> list:
+        '''
+        Doolittle decomposition method.\n
+        reteurn: We will return the solution of the equations as a list.
+        '''
         self._yList[0] = self._augMatrix[0][-1]
         for i in range(self._len):
             tempSumY = 0
@@ -70,9 +84,13 @@ class TriDecomposition(object):
                 self._UMatrix[p][p]
         return self._xList
 
-    # 追赶法
+    # Chasedecomposition method
 
     def Chase(self) -> list:
+        '''
+        Chasedecomposition method.\n
+        return: We will return the solution of the equations as a list.
+        '''
         self._UMatrix[0][0] = self._augMatrix[0][0]
         self._yList[0] = self._augMatrix[0][-1]
         for i in range(1, self._len):

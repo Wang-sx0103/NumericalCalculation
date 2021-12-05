@@ -6,8 +6,14 @@ temp/
 
 # build folder
 build/
-CNum.egg-info/
+*.egg-info/
 dist/
 
 # Test Module
 test/
+testDirect.py
+testIteration.py
+testPower.py
+testInterpolation.py
+testMatrix.py
+testFuncAppro.py

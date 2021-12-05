@@ -1,38 +1,37 @@
 # -*- coding: utf-8 -*-
 
 '''
-Iteration
-    This class contains several iterative methods for solving linear equations.
-Function list
-    Jacobi: Jacob Iterative method.
-    GaussSeidel: Gauss-Seidel Iteration.
-    SOR: Successive Over - Relaxation Iteration.
+This module contains a class with the same name.
 '''
 
 
 class Iteration(object):
     '''
-    This class contains several iterative methods for solving linear equations
+    This class contains several iterative methods for solving linear equations.
     '''
     def __init__(self,
-                 augMatrix: list = [],
+                 augMat: list = [],
                  xList: list = [],
                  iteraNum: int = 100,
                  threshold: float = 0.000001,
                  relaxaFactor: float = 1) -> None:
         '''
-        augMatrix: You need to provide an augmented matrix,
-        but this is't necessary.
-        xList: You need to provide an iterative initial value of X vector,
-        but this is't necessary.
+        augMat: You need to provide an augmented matrix,
+        If you do not provide the augMatrix here,
+        you must provide it at the function called
+        setAugMat().\n
+        xList: You need to provide an iterative initial value of XList,
+        If you do not provide the list here,
+        you must provide it at the function called
+        setIteraValue().\n
         iteraNum: You need to provide a number of iterations.
-        If you don't provide, we will default to 100.
+        If you don't provide, we will default to 100.\n
         threshold: You need to provide an error in ending iteration.
-        If you don't provide, we will default to 1/1000000.
+        If you don't provide, we will default to 1/1000000.\n
         relaxaFactor: When you use the Successive Over-Relaxation Iteration,
-        you need to provide a relaxation factor
+        you need to provide a relaxation factor.
         '''
-        self._augMatrix = augMatrix
+        self._augMatrix = augMat
         self._len = len(self._augMatrix)
         self._xList = xList
         self._IteraNum = iteraNum
@@ -40,38 +39,70 @@ class Iteration(object):
         self._relaxaFactor = relaxaFactor
 
     def setAugMat(self, augMat: list) -> None:
+        '''
+        augMat: You can provide an augmented matrix.
+        '''
         self._augMatrix = augMat
 
     def getAugMat(self) -> list:
+        '''
+        return: We will return an augmented matrix..
+        '''
         return self._augMatrix
 
     def setIteraValue(self, xList: list) -> None:
+        '''
+        XList: You need to provide the initial value of the iteration.
+        '''
         self._xList = xList
 
     def getIteraResults(self) -> list:
+        '''
+        return: We will return the iteration results.
+        '''
         return self._xList
 
     def setIteraNum(self, IteraNum: int) -> None:
+        '''
+        IteraNum: You need to provide the number of iterations.
+        '''
         self._IteraNum = IteraNum
 
     def getIteraNum(self) -> float:
+        '''
+        return: We will return the number of iterations.
+        '''
         return self._IteraNum
 
     def setThreshold(self, threshold: float) -> None:
+        '''
+        threshold: You need to provide an error in ending iteration.
+        '''
         self._threshold = threshold
 
     def getThreshold(self) -> float:
+        '''
+        return: We will return the error in ending iteration.
+        '''
         return self._threshold
 
     def setRelaxaFactor(self, relaxaFactor: float) -> None:
+        '''
+        relaxaFactor: You need to provide a relaxation factor.
+        '''
         self._relaxaFactor = relaxaFactor
 
     def getRelaxaFactor(self) -> float:
+        '''
+        self:  We will return the relaxation factor.
+        '''
         return self._relaxaFactor
 
-    # 雅各比迭代法 Jocobi Iteration
-
     def Jacobi(self) -> list:
+        '''
+        Jacob Iterative method.\n
+        return: We will return the solution of the equations as a list.
+        '''
         count = 0
         deltaList = 1
         while deltaList > self._threshold:
@@ -95,9 +126,11 @@ class Iteration(object):
             deltaList = pow(deltaList, 0.5)
         return self._xList
 
-    # 高斯-赛德尔迭代法 Gauss-Seidel Iteration
-
     def GaussSeidel(self) -> list:
+        '''
+        Gauss-Seidel Iteration.\n
+        return: We will return the solution of the equations as a list.
+        '''
         count = 0
         deltaList = 1
         while deltaList > self._threshold:
@@ -122,9 +155,12 @@ class Iteration(object):
             deltaList = pow(deltaList, 0.5)
         return self._xList
 
-    # 松弛法 Successive Over - Relaxation Iteration
-
     def SOR(self, omega=1) -> list:
+        '''
+        Successive Over - Relaxation Iteration.\n
+        omega: Relaxation factor.\n
+        return: We will return the solution of the equations as a list.
+        '''
         count = 0
         deltaList = 1
         while deltaList > self._threshold:
