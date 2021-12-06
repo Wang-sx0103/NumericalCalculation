@@ -19,7 +19,7 @@ pip install CNum
 	- Install the package using `python setup.py install`.
 
 ## Usage
-### CNum
+- `CNum`
 This package contains classes that users use directly.  
 First, we need to introduce how to use this package.  
 ```python
