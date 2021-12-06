@@ -5,7 +5,7 @@ This module contains a class with the same name.
 from .lib import Init as init
 
 
-class TriDecomposition(object):
+class TriDecomposition():
     '''
     This class contains several triangular decomposition methods
     for solving linear equations.
