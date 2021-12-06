@@ -7,7 +7,7 @@ from .lib import MatCal as mc
 from .TriDecomposition import TriDecomposition as td
 
 
-class Interpolation(object):
+class Interpolation():
     '''
     This class contains several interpolation methods in order to
     construct the interpolation polynomial function and

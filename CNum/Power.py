@@ -7,7 +7,7 @@ from .lib import Init as init
 from .TriDecomposition import TriDecomposition as td
 
 
-class Power(object):
+class Power():
     '''
     This class contains several power methods in order to
     solve the maximum or minimum eigenvalue according to the mold and

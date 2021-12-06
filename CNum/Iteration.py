@@ -5,7 +5,7 @@ This module contains a class with the same name.
 '''
 
 
-class Iteration(object):
+class Iteration():
     '''
     This class contains several iterative methods for solving linear equations.
     '''
@@ -13,8 +13,7 @@ class Iteration(object):
                  augMat: list = [],
                  xList: list = [],
                  iteraNum: int = 100,
-                 threshold: float = 0.000001,
-                 relaxaFactor: float = 1) -> None:
+                 threshold: float = 0.000001) -> None:
         '''
         augMat: You need to provide an augmented matrix,
         If you do not provide the augMatrix here,
@@ -28,15 +27,12 @@ class Iteration(object):
         If you don't provide, we will default to 100.\n
         threshold: You need to provide an error in ending iteration.
         If you don't provide, we will default to 1/1000000.\n
-        relaxaFactor: When you use the Successive Over-Relaxation Iteration,
-        you need to provide a relaxation factor.
         '''
         self._augMatrix = augMat
         self._len = len(self._augMatrix)
         self._xList = xList
         self._IteraNum = iteraNum
         self._threshold = threshold
-        self._relaxaFactor = relaxaFactor
 
     def setAugMat(self, augMat: list) -> None:
         '''
@@ -86,18 +82,6 @@ class Iteration(object):
         '''
         return self._threshold
 
-    def setRelaxaFactor(self, relaxaFactor: float) -> None:
-        '''
-        relaxaFactor: You need to provide a relaxation factor.
-        '''
-        self._relaxaFactor = relaxaFactor
-
-    def getRelaxaFactor(self) -> float:
-        '''
-        self:  We will return the relaxation factor.
-        '''
-        return self._relaxaFactor
-
     def Jacobi(self) -> list:
         '''
         Jacob Iterative method.\n
@@ -108,7 +92,6 @@ class Iteration(object):
         while deltaList > self._threshold:
             deltaList = 0
             if count == self._IteraNum:
-                self._xList
                 break
             else:
                 count += 1
@@ -136,7 +119,6 @@ class Iteration(object):
         while deltaList > self._threshold:
             deltaList = 0
             if count == self._IteraNum:
-                self._xList
                 break
             else:
                 count += 1
@@ -158,7 +140,8 @@ class Iteration(object):
     def SOR(self, omega=1) -> list:
         '''
         Successive Over - Relaxation Iteration.\n
-        omega: Relaxation factor.\n
+        omega: you need to provide a Relaxation factor.
+        If you don't provide, we will default to 100.\n
         return: We will return the solution of the equations as a list.
         '''
         count = 0
@@ -166,7 +149,6 @@ class Iteration(object):
         while deltaList > self._threshold:
             deltaList = 0
             if count == self._IteraNum:
-                self._xList
                 break
             else:
                 count += 1

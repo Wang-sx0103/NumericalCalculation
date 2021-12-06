@@ -5,7 +5,7 @@ This module contains a class with the same name.
 from .lib import Init as init
 
 
-class Elimination(object):
+class Elimination():
     '''
     This class contains several common elimination methods
     for solving linear equations.

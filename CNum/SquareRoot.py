@@ -5,7 +5,7 @@ This module contains a class with the same name.
 from .lib import Init as init
 
 
-class SquareRoot(object):
+class SquareRoot():
     '''
     This class contains several square root methods for
     solving linear equations that it contains a coefficient matrix

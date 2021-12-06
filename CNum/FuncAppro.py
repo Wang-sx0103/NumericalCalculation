@@ -6,7 +6,7 @@ from .lib import Init as init
 from .Elimination import Elimination as et
 
 
-class FuncAppro (object):
+class FuncAppro ():
     '''
     This class contains a methods in order to construct an n-order polynomial.
     '''
