@@ -48,8 +48,6 @@ class TriDecomposition():
         '''
         return self._UMatrix
 
-    # Doolittle decomposition method
-
     def Doolittle(self) -> list:
         '''
         Doolittle decomposition method.\n
@@ -83,8 +81,6 @@ class TriDecomposition():
             self._xList[p] = (self._yList[p] - tempSumX) / \
                 self._UMatrix[p][p]
         return self._xList
-
-    # Chasedecomposition method
 
     def Chase(self) -> list:
         '''

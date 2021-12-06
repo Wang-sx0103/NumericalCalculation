@@ -42,8 +42,6 @@ class SquareRoot():
         '''
         return self._LMatrix
 
-    # Cholesky factorization
-
     def Cholesky(self) -> list:
         '''
         Cholesky factorization.\n
@@ -71,8 +69,6 @@ class SquareRoot():
                 tempSumX += self._LMatrix[p][k]*self._xList[p]
             self._xList[k] = (self._yList[k] - tempSumX)/self._LMatrix[k][k]
         return self._xList
-
-    # Improved square root method
 
     def LDLT(self) -> list:
         '''

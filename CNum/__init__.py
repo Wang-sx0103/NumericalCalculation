@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys
+# import sys
 
 # from . import matrix
 # from .matrix import Matrix as mat
@@ -8,6 +8,8 @@ import sys
 from .Elimination import Elimination
 
 from .FuncAppro import FuncAppro
+
+from .Integral import Integral
 
 from .Interpolation import Interpolation
 
@@ -20,4 +22,4 @@ from .SquareRoot import SquareRoot
 from .TriDecomposition import TriDecomposition
 
 
-name = "CNum"
+# name = "CNum"

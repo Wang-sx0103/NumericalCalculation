@@ -35,8 +35,6 @@ class Elimination():
         '''
         return self._augMatrix
 
-    # Gauss elimination method
-
     def gauss(self) -> list:
         '''
         Gauss elimination method.\n
@@ -64,8 +62,6 @@ class Elimination():
             self._xList[i] = (self._augMatrix[i][-1] - sum) / \
                 self._augMatrix[i][i]
         return self._xList
-
-    # Elimination with Maximal Column Pivoting.
 
     def columnEliminate(self) -> list:
         '''
@@ -95,8 +91,6 @@ class Elimination():
             self._xList[i] = (self._augMatrix[i][-1] - sum) / \
                 self._augMatrix[i][i]
         return self._xList
-
-    # complete pivoting.
 
     def completeEliminate(self) -> list:
         '''

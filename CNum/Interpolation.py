@@ -17,11 +17,11 @@ class Interpolation():
                  xList: list = [],
                  yList: list = []) -> None:
         '''
-        xList: You need to provide a set of X coordinates.
+        xList: You need to provide a set of x-points.
         If you do not provide the vector here,
         you must provide it at the function called
         "setListX" or "setKPoints".\n
-        yList: You need to provide a set of Y coordinates.
+        yList: You need to provide a set of y-points.
         If you do not provide the vector here,
         you must provide it at the function called
         "setListY" or "setKPoints".\n
@@ -33,7 +33,7 @@ class Interpolation():
 
     def setKPoints(self, KnowPoints: list) -> None:
         '''
-        knowPoints: You can provide a list of 2 rows and N columns.
+        knowPoints: You can provide a list of 2-rows and N-columns.
         '''
         self._xList = KnowPoints[0]
         self._yList = KnowPoints[1]
@@ -63,8 +63,6 @@ class Interpolation():
         '''
         return self._yList
 
-    # Lagrangian Interpolation Method
-    # 拉格朗日插值法
     def Lagrange(self, x: float) -> float:
         '''
         Lagrangian Interpolation Method.\n
@@ -78,8 +76,6 @@ class Interpolation():
             L += self._l[i]*self._yList[i]
         return L
 
-    # Newtow Interpolation Method
-    # 牛顿插值法
     def Newton(self, x: float) -> float:
         '''
         Newtow Interpolation Method.\n
@@ -93,15 +89,13 @@ class Interpolation():
             N += self._diffQuo[i]*self._xSubX(x, i)
         return N
 
-    # Hermite Interpolation Method
-    # 埃尔米特三次插值
     def Hermite(self, x: float, yDer1th: list) -> float:
         '''
         Hermite Interpolation Method.\n
         x: You must provide a real number.\n
         yDer1th: You need to provide a set of first derivative values
         at both ends of the XList in a list.
-        return: We will return the value at x  point
+        return: We will return the value at x-point
         calculated by this interpolation method.
         '''
         x0 = self._xList[0]
@@ -115,8 +109,6 @@ class Interpolation():
             (x-x0)*(((x-x1)/(x0-x1))**2)*yDer0 + \
             (x-x1)*(((x-x0)/(x1-x0))**2)*yDer1
 
-    # Spline Interpolation Method
-    # 三次样条插值
     def CubicSpline(self, x: float,
                     flag: int,
                     endpointDer: list = []) -> float:
@@ -144,7 +136,6 @@ class Interpolation():
             ((x-self._xList[j+1])/hj)
 
     # Used to generate Lagrange basis functions
-    # 用于生成拉格朗日基函数
     def _LagIBF(self, x: float) -> list:
         resultVector = init.vector(self._len)
         for i in range(self._len):
@@ -157,7 +148,6 @@ class Interpolation():
         return resultVector
 
     # Used to construct difference quotient
-    # 用于构建差商
     def _DiffQuotient(self) -> list:
         resultVector = init.vector(self._len)
         resultVector[0] = self._yList[0]
