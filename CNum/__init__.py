@@ -17,6 +17,8 @@ from .Iteration import Iteration
 
 from .Power import Power
 
+from .Root import Root
+
 from .SquareRoot import SquareRoot
 
 from .TriDecomposition import TriDecomposition
