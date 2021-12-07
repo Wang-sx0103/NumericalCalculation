@@ -7,7 +7,8 @@ This module contains a class with the same name.
 
 class Iteration():
     '''
-    This class contains several iterative methods for solving linear equations.
+    This class contains several iterative methods
+    in order to solve linear equations.
     '''
     def __init__(self,
                  augMat: list = [],

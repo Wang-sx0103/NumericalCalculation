@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-name = "lib"
 
 from . import Init
 

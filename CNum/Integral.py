@@ -35,7 +35,8 @@ class Integral():
         callback: This is a callback function.\n
         The integrand function needs to be provided by yourself.\n
         num: Number of interval bisections.
-        If you don't provide, we will default to 1\n
+        If you don't provide, we will default to 1.\n
+        return: We will return an approximation of the integrand.
         like this:\n
             def f(x) -> float:
                 return a+b*x
@@ -59,7 +60,8 @@ class Integral():
         The integrand function needs to be provided by yourself.\n
         half: Half of number of interval bisections.
         So the actual number of intervals is twice that of "half"
-        If you don't provide, we will default to 1\n
+        If you don't provide, we will default to 1.\n
+        return: We will return an approximation of the integrand.
         like this:\n
             def f(x) -> float:
                 return a+b*x
@@ -95,6 +97,12 @@ class Integral():
         iteraNum: You need to provide a number of iterations.
         If you don't provide, we will default to 1000.\n
         return: We will return an approximation of the integrand.
+        like this:\n
+            def f(x) -> float:
+                return a+b*x
+
+            itg = CNum.Integral([0, 1])
+            itg.TrapezoidHalf(f, 10, 0.00001, 100)
         '''
         m = 1
         count = t = t0 = 0
@@ -130,6 +138,12 @@ class Integral():
         iteraNum: You need to provide a number of iterations.
         If you don't provide, we will default to 1000.\n
         return: We will return an approximation of the integrand.
+        like this:\n
+            def f(x) -> float:
+                return a+b*x
+
+            itg = CNum.Integral([0, 1])
+            itg.SimpsonHalf(f, 10)
         '''
         count = s = s0 = 0
         f1 = (self._rightPoint+self._leftPoint)
@@ -169,6 +183,12 @@ class Integral():
         iteraNum: You need to provide a number of iterations.
         If you don't provide, we will default to 1000.\n
         return: We will return an approximation of the integrand.
+        like this:\n
+            def f(x) -> float:
+                return a+b*x
+
+            itg = CNum.Integral([0, 1])
+            itg.Romberg(f, 10)
         '''
         count = 0
         h = self._rightPoint - self._leftPoint
