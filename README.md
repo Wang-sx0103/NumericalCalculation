@@ -3,7 +3,7 @@
 ![CNum](/branding/logo/logomark/CNumlogo.png)
 # **NumericalCalculation**
 
-  A library related to common **numerical calculations**.  
+A library on **numerical analysis** and **numerical calculation**.
 
 ## License
 NuericalCalculation is released under a  [GPLv3 license](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/LICENSE). 
@@ -19,7 +19,6 @@ pip install CNum
 	- Install the package using `python setup.py install`.
 
 ## Usage
-- `CNum`
 This package contains classes that users use directly.  
 First, we need to introduce how to use this package.  
 ```python
