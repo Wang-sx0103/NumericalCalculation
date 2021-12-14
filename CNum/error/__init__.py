@@ -2,7 +2,7 @@
 
 
 error = {
-    101:"主元素存在为0的情况, 请更换为其它消元法!",
-    102:"线性方程组无解!",
-    201:"不可用追赶法!"
+    101:"The main element exists as 0, please replace it with another elimination method!",
+    102:"Linear equations without solutions!",
+    201:"Unavailable Chasedecomposition method!"
 }
