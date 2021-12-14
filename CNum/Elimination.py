@@ -3,8 +3,7 @@
 This module contains a class with the same name.
 '''
 from .lib import Init as init
-
-
+from .error import error
 class Elimination():
     '''
     This class contains several common elimination methods
@@ -21,7 +20,6 @@ class Elimination():
         self._len = len(self._augMatrix)
         self._xIndex = init.vectorIndex(self._len)
         self._xList = init.vector(self._len)
-        self._errorList = []
 
     def setAugMat(self, augMat) -> None:
         '''
@@ -43,16 +41,15 @@ class Elimination():
         for k in range(self._len):
             for i in range(k, self._len-1):
                 if round(self._augMatrix[k][k], 5) == 0.00000:
-                    self._errorList.append("主元素存在为0的情况," +
-                                           "请更换为其它消元法!")
-                    return self._errorList
+                    print(error[101])
+                    return
                 ratio = self._augMatrix[i+1][k]/self._augMatrix[k][k]
                 for j in range(k, self._len+1):
                     self._augMatrix[i+1][j] = self._augMatrix[i+1][j] - \
                         ratio * self._augMatrix[k][j]
         if round(self._augMatrix[self._len-1][self._len-1], 5) == 0.00000:
-            self._errorList.append("线性方程组无解！")
-            return self._errorList
+            print(error[102])
+            return
         self._xList[-1] = self._augMatrix[self._len-1][-1] / \
             self._augMatrix[self._len-1][self._len-1]
         for i in range(self._len-2, -1, -1):
@@ -72,16 +69,15 @@ class Elimination():
             self._changeOrder(k)
             for i in range(k, self._len-1):
                 if round(self._augMatrix[k][k], 5) == 0.00000:
-                    self._errorList.append("主元素存在为0的情况," +
-                                           "请更换为全主元素法!")
-                    return self._errorList
+                    print(error[101])
+                    return
                 ratio = self._augMatrix[i+1][k]/self._augMatrix[k][k]
                 for j in range(k, self._len+1):
                     self._augMatrix[i+1][j] = self._augMatrix[i+1][j] - \
                         ratio * self._augMatrix[k][j]
         if round(self._augMatrix[self._len-1][self._len-1], 5) == 0.00000:
-            self._errorList.append("线性方程组无解！")
-            return self._errorList
+            print(error[102])
+            return
         self._xList[-1] = self._augMatrix[self._len-1][-1] / \
             self._augMatrix[self._len-1][self._len-1]
         for i in range(self._len-2, -1, -1):
@@ -102,15 +98,15 @@ class Elimination():
             for i in range(k, self._len-1):
                 if round(self._augMatrix[k][k], 5) == 0.00000:
                     self._flag = 1
-                    self._errorList.append("线性方程组无解！")
-                    return self._errorList
+                    print(error[102])
+                    return
                 ratio = self._augMatrix[i+1][k]/self._augMatrix[k][k]
                 for j in range(k, self._len+1):
                     self._augMatrix[i+1][j] = self._augMatrix[i+1][j] - \
                         ratio * self._augMatrix[k][j]
         if round(self._augMatrix[self._len-1][self._len-1], 5) == 0.00000:
-            self._errorList("线性方程组无解！")
-            return self._errorList
+            print(error[101])
+            return
         self._xList[-1] = self._augMatrix[self._len-1][-1] / \
             self._augMatrix[self._len-1][self._len-1]
         for i in range(self._len-2, -1, -1):

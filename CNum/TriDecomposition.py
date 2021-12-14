@@ -3,7 +3,7 @@
 This module contains a class with the same name.
 '''
 from .lib import Init as init
-
+from .error import error
 
 class TriDecomposition():
     '''
@@ -93,7 +93,8 @@ class TriDecomposition():
             for j in range(self._len):
                 if (i - 1) == j:
                     if round(self._UMatrix[i-1][i-1], 5) == 0.00000:
-                        return "不可用追赶法！"
+                        print(error[201])
+                        return
                     self._LMatrix[i][j] = self._augMatrix[i][j] / \
                         self._UMatrix[i-1][i-1]
                     self._UMatrix[i][j+1] = self._augMatrix[i][j+1] - \
