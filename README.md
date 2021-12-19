@@ -1,5 +1,3 @@
-[TOC]
-
 ![CNum](/branding/logo/logomark/CNumlogo.png)
 
 # **NumericalCalculation**
