@@ -5,6 +5,7 @@ This module contains a class with the same name.
 from .lib import Init as init
 from .error import error
 
+
 class TriDecomposition():
     '''
     This class contains several triangular decomposition methods

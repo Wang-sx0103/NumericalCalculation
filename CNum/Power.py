@@ -97,8 +97,8 @@ class Power():
 
     def NorPower(self) -> float:
         '''
-        Normalized power method.
-        return: We will return the maximum eigenvalue according to the mold.\n
+        Normalized power method.\n
+        return: We will return the maximum eigenvalue according to the mold.
         '''
         count = 0
         deltaNum = 1
@@ -120,7 +120,7 @@ class Power():
     def OriginShift(self, lambda0: float = 0) -> float:
         '''
         Origin shift method.\n
-        return: We will return the maximum eigenvalue according to the mold.\n
+        return: We will return the maximum eigenvalue according to the mold.
         '''
         shiftMat = init.Matrix(self._row, self._col)
         shiftMat = mc.matSub(self._matrix, init.Identity(self._row, lambda0))
@@ -144,7 +144,7 @@ class Power():
     def Aitken(self) -> float:
         '''
         Aitken acceleration.\n
-        return: We will return the maximum eigenvalue according to the mold.\n
+        return: We will return the maximum eigenvalue according to the mold.
         '''
         count = 0
         deltaNum = 1
@@ -173,7 +173,7 @@ class Power():
     def InversePower(self, appro: float = 0) -> float:
         '''
         Inverse power methond.\n
-        return: We will return the minimum eigenvalue according to the mold.\n
+        return: We will return the minimum eigenvalue according to the mold.
         '''
         shiftMat = init.Matrix(self._row, self._col)
         shiftMat = mc.matSub(self._matrix, init.Identity(self._row, appro))

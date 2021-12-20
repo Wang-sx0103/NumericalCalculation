@@ -138,7 +138,7 @@ class Iteration():
             deltaList = pow(deltaList, 0.5)
         return self._xList
 
-    def SOR(self, omega=1) -> list:
+    def SOR(self, omega: float = 1) -> list:
         '''
         Successive Over - Relaxation Iteration.\n
         omega: you need to provide a Relaxation factor.

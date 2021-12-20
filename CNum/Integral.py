@@ -59,7 +59,7 @@ class Integral():
         callback: This is a callback function.\n
         The integrand function needs to be provided by yourself.\n
         half: Half of number of interval bisections.
-        So the actual number of intervals is twice that of "half"
+        So the actual number of intervals is twice that of "half".
         If you don't provide, we will default to 1.\n
         return: We will return an approximation of the integrand.
         like this:\n
@@ -130,7 +130,7 @@ class Integral():
                     threshold: float = 0.000001,
                     iteraNum: int = 1000) -> float:
         '''
-        Successive half division algorithm of SimpsonHalf function.\n
+        Successive half division algorithm of Simpson function.\n
         callback: This is a callback function.\n
         The integrand function needs to be provided by yourself.\n
         threshold: You must provide an error in ending iteration.

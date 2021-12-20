@@ -15,8 +15,7 @@ class SquareRoot():
         '''
         augMat: You need to provide an augmented matrix in the constructor.
         If you do not provide the augMatrix here,
-        you must provide it at the function called
-        setAugMat().\n
+        you must provide it at the function called setAugMat().\n
         '''
         self._augMatrix = augMat
         self._len = len(self._augMatrix)

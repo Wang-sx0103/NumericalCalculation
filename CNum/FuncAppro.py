@@ -15,7 +15,9 @@ class FuncAppro ():
                  yList: list = []) -> None:
         '''
         xList: You need to provide a set of x-points.
-        need to provide
+        If you do not provide the vector here,
+        you must provide it at the function called
+        setListX().\n
         yList: You need to provide a set of y-points.
         If you do not provide the vector here,
         you must provide it at the function called

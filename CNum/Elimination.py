@@ -4,6 +4,8 @@ This module contains a class with the same name.
 '''
 from .lib import Init as init
 from .error import error
+
+
 class Elimination():
     '''
     This class contains several common elimination methods
@@ -12,7 +14,7 @@ class Elimination():
     def __init__(self, augMat: list = []) -> None:
         '''
         augMat: You need to provide an augmented matrix in the constructor.
-        If you do not provide the augMatrix here,
+        If you do not provide the augmented matrix here,
         you must provide it at the function called
         setAugMat().\n
         '''

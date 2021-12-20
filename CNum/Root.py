@@ -19,8 +19,8 @@ class Root():
     def Bisection(self,
                   callback,
                   interval: list,
-                  iteraNum: int = 1000,
-                  threshold: float = 0.000001) -> float:
+                  threshold: float = 0.000001,
+                  iteraNum: int = 1000,) -> float:
         '''
         Inter-partition method.\n
         callback: This is a callback function.
@@ -58,7 +58,7 @@ class Root():
 
     def Steffensen(self,
                    callback,
-                   x0,
+                   x0: float,
                    threshold: float = 0.000001,
                    iteraNum: int = 1000) -> float:
         '''
@@ -96,7 +96,7 @@ class Root():
     def Newton(self,
                callback1,
                callback2,
-               x0,
+               x0: float,
                threshold: float = 0.000001,
                iteraNum: int = 1000,) -> float:
         '''
