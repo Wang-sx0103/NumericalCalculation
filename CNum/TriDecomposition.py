@@ -85,7 +85,7 @@ class TriDecomposition():
 
     def Chase(self) -> list:
         '''
-        Chasedecomposition method.\n
+        Chase decomposition method.\n
         return: We will return the solution of the equations as a list.
         '''
         self._UMatrix[0][0] = self._augMatrix[0][0]
