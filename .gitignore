@@ -1,6 +1,9 @@
 # VS Code
 __pycache__/
 
+# Intermediate file
+*.pdf
+
 # Temp Files
 temp/
 

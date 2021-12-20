@@ -1,4 +1,4 @@
-![CNum](/branding/logo/logomark/CNumlogo.png)
+<a href="https://github.com/Wang-sx0103/NumericalCalculation/"><img alt="CNum" src="./branding/logo/logomark/CNumlogo.svg" height="120"></a>
 
 # **NumericalCalculation**
 
@@ -26,7 +26,7 @@ pip install CNum
 
 ## Doc
 
-Please refer to the instruction [document](./doc/CNum1.0.0.md) for detailed usage.  
+Please refer to the instruction [document](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/doc/CNum1.0.0.md) for detailed usage.  
 
 ## Call
 
