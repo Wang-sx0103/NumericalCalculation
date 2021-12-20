@@ -6,7 +6,7 @@ A library on **numerical analysis** and **numerical calculation**.
 
 ## License
 
-NuericalCalculation is released under a  [GPLv3 license](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/LICENSE). 
+NuericalCalculation is released under a  [GPLv3 license](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/LICENSE).
 
 ## Prerequisites
 
@@ -24,13 +24,13 @@ pip install CNum
 
   - Install the package using `python setup.py install`.
 
-## Usage
+## Doc
 
-This package contains classes that users use directly.  
-First, we need to introduce how to use this package.  
+Please refer to the instruction [document](./doc/CNum1.0.0.md) for detailed usage.  
 
-```python
-import CNum
-```
+## Call
 
-## Demo
+---------
+If you have questions or comments, please contact:
+
+- AnonymityA@qq.com
