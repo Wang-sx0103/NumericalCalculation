@@ -34,3 +34,4 @@ Please refer to the instruction [document](./doc/CNum1.0.0.md) for detailed usag
 If you have questions or comments, please contact:
 
 - AnonymityA@qq.com
+- AlexWang0103@outlook.com
