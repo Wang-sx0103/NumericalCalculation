@@ -26,15 +26,15 @@ style EF fill:#f9f,stroke:#333,stroke-width:1px,fill-opacity:0.3
 ### function module
 
   This module contains nine classes:
-    - [Elimination](../CNum/Elimination.py)
-    - [FuncAppro](../CNum/FuncAppro.py)
-    - [Integral](../CNum/Integral.py)
-    - [Interpolation](../CNum/Interpolation.py)
-    - [Iteration](../CNum/Iteration.py)
-    - [Power](../CNum/Power.py)
-    - [Root](../CNum/Root.py)
-    - [SquareRoot](../CNum/SquareRoot.py)
-    - [TriDecomposition](../CNum/TriDecomposition.py)
+    - [Elimination](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/Elimination.py)
+    - [FuncAppro](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/FuncAppro.py)
+    - [Integral](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/Integral.py)
+    - [Interpolation](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/Interpolation.py)
+    - [Iteration](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/Iteration.py)
+    - [Power](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/Power.py)
+    - [Root](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/Root.py)
+    - [SquareRoot](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/SquareRoot.py)
+    - [TriDecomposition](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/TriDecomposition.py)
 
  These classes implement the main functions of this package. In the next chapter, we will describe the usage and functions of each class in detail.
 
