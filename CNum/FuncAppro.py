@@ -33,6 +33,7 @@ class FuncAppro ():
         xList: You can provide a set of x-points.
         '''
         self._xList = xList
+        self._len = len(xList)
 
     def getListX(self) -> list:
         '''
@@ -45,6 +46,7 @@ class FuncAppro ():
         yList: You can provide a set of y-points.
         '''
         self._yList = yList
+        self._len = len(yList)
 
     def getListY(self) -> list:
         '''

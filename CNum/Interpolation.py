@@ -56,6 +56,7 @@ class Interpolation():
         yList: You can provide a set of y-points.
         '''
         self._yList = yList
+        self._len = len(yList)
 
     def getListY(self) -> list:
         '''

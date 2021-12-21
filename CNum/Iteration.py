@@ -40,6 +40,7 @@ class Iteration():
         augMat: You can provide an augmented matrix.
         '''
         self._augMatrix = augMat
+        self._len = len(self._augMatrix)
 
     def getAugMat(self) -> list:
         '''

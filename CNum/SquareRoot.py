@@ -28,6 +28,10 @@ class SquareRoot():
         augMat: You can provide an augmented matrix.
         '''
         self._augMatrix = augMat
+        self._len = len(augMat)
+        self._LMatrix = init.LMat(self._len)
+        self._xList = init.vector(self._len)
+        self._yList = init.vector(self._len)
 
     def getAugMat(self) -> list:
         '''

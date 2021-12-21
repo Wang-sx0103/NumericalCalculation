@@ -28,6 +28,9 @@ class Elimination():
         augMat: You can provide an augmented matrix.
         '''
         self._augMatrix = augMat
+        self._len = len(augMat)
+        self._xIndex = init.vectorIndex(self._len)
+        self._xList = init.vector(self._len)
 
     def getAugMat(self) -> list:
         '''
