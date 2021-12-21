@@ -17,7 +17,7 @@ setup(
     author='Shangxing Wang',
     author_email='AlexWang0103@outlook.com',
     name='CNum',
-    version='1.0.0',
+    version='1.0.1',
     description='A library related to common numerical calculations.',
     long_description=README,
     long_description_content_type='text/markdown',
