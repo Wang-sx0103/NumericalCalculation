@@ -14,11 +14,13 @@ dist/
 
 # Test Module
 test/
-testDirect.py
-testIteration.py
-testPower.py
-testInterpolation.py
 testMatrix.py
+testElimination.py
 testFuncAppro.py
 testIntegral.py
+testInterpolation.py
+testIteration.py
+testPower.py
 testRoot.py
+testSquareRoot.py
+testTriDecomposition.py
