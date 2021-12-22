@@ -19,6 +19,7 @@ setup(
     name='CNum',
     version='1.0.1',
     description='A library related to common numerical calculations.',
+    license='GPLv3',
     long_description=README,
     long_description_content_type='text/markdown',
     classifiers=[
