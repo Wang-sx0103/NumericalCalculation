@@ -30,7 +30,7 @@ class Iteration():
         If you don't provide, we will default to 1/1000000.\n
         '''
         self._augMatrix = augMat
-        self._len = len(self._augMatrix)
+        self._len = len(augMat)
         self._xList = xList
         self._IteraNum = iteraNum
         self._threshold = threshold
