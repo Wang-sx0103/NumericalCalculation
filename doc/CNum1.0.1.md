@@ -3,7 +3,7 @@
 
 ## structure
 
-This package includes four sub modules: `function module`, `data type module`, `error feedback module` and `general module`.  
+  This package includes four sub modules: `function module`, `data type module`, `error feedback module` and `general module`.  
 
 ```mermaid
 graph LR
@@ -34,7 +34,7 @@ style EF fill:#f9f,stroke:#333,stroke-width:1px,fill-opacity:0.3
 - [SquareRoot](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/SquareRoot.py)
 - [TriDecomposition](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/CNum/TriDecomposition.py)
 
- These classes implement the main functions of this package. In the next chapter, we will describe the usage and functions of each class in detail.
+  These classes implement the main functions of this package. In the next chapter, we will describe the usage and functions of each class in detail.
 
 ### data type module
 
