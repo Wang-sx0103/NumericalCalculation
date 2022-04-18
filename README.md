@@ -15,7 +15,7 @@ A library on **numerical analysis** and **numerical calculation**.
 - You must have a python v3.x interpreter
 
 - Install with pip
-  - Copy the address of the latest installation package [url](https://github.com/Wang-sx0103/NumericalCalculation/releases)
+  - Copy the [url](https://github.com/Wang-sx0103/NumericalCalculation/releases) of the latest installation package 
     ```shell
     https://github.com/Wang-sx0103/NumericalCalculation/releases/download/1.0.1/CNum-1.0.1-py3-none-any.whl
     ```
