@@ -3,20 +3,26 @@
 # **NumericalCalculation**
 
 A library on **numerical analysis** and **numerical calculation**.
-
-## License
-
-NuericalCalculation is released under a  [GPLv3 license](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/LICENSE).
+[![Release Version](https://img.shields.io/github/v/release/Wang-sx0103/NumericalCalculation?color=lightgrey&include_prereleases)](https://github.com/Wang-sx0103/NumericalCalculation/releases)
+[![GitHub Version](https://img.shields.io/github/license/Wang-sx0103/NumericalCalculation)](LICENSE)
+![GitHub Repo size](https://img.shields.io/github/repo-size/Wang-sx0103/NumericalCalculation)
+[![GitHub Repo Languages](https://img.shields.io/github/languages/top/Wang-sx0103/NumericalCalculation?color=G)](https://github.com/Wang-sx0103/NumericalCalculation/search?l=python)
+![Interpreter version](https://img.shields.io/badge/python-v3.x-red)
 
 ## Prerequisites
 
-- You must have a python 3.x interpreter
+- You must have a python v3.x interpreter
 
 - Install with pip
-
-```shell
-pip install CNum
-```
+  - Download the latest WHL [package](https://github.com/Wang-sx0103/NumericalCalculation/releases)
+  - Copy the address of the latest installation package [url](https://github.com/Wang-sx0103/NumericalCalculation/releases)
+    ```shell
+    https://github.com/Wang-sx0103/NumericalCalculation/releases/download/1.0.1/CNum-1.0.1-py3-none-any.whl
+    ```
+  - pip install
+    ```shell
+    pip install url
+    ```
 
 - Install with setup scripts
 
@@ -28,9 +34,10 @@ pip install CNum
 
 Please refer to the instruction [document](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/doc/CNum1.0.1.md) for detailed usage.  
 
+---------
+
 ## Call
 
----------
 If you have questions or comments, please contact:
 
 - AnonymityA@qq.com
