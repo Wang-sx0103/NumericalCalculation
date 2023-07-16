@@ -11,8 +11,8 @@ class Iteration():
     in order to solve linear equations.
     '''
     def __init__(self,
-                 augMat: list = [],
-                 xList: list = [],
+                 augMat: list = None,
+                 xList: list = None,
                  iteraNum: int = 100,
                  threshold: float = 0.000001) -> None:
         '''

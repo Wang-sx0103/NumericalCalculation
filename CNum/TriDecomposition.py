@@ -11,7 +11,7 @@ class TriDecomposition():
     This class contains several triangular decomposition methods
     for solving linear equations.
     '''
-    def __init__(self, augMat: list = []) -> None:
+    def __init__(self, augMat: list = None) -> None:
         '''
         augMat: You need to provide an augmented matrix in the constructor.
         If you do not provide the augMatrix here,

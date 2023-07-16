@@ -10,7 +10,7 @@ class Integral():
     calculate the approximation of the integrand.\n
     But The integrand function needs to be provided by yourself.
     '''
-    def __init__(self, endPoint: list = []) -> None:
+    def __init__(self, endPoint: list = None) -> None:
         '''
         endPoint: You need to provide the value
         of the endpoint of the integral interval.

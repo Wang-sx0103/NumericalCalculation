@@ -11,7 +11,7 @@ class SquareRoot():
     solving linear equations that it contains a coefficient matrix
     with positive definite symmetry.
     '''
-    def __init__(self, augMat: list = []) -> None:
+    def __init__(self, augMat: list = None) -> None:
         '''
         augMat: You need to provide an augmented matrix in the constructor.
         If you do not provide the augMatrix here,

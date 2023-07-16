@@ -14,8 +14,8 @@ class Power():
     the corresponding eigenvector.
     '''
     def __init__(self,
-                 Matrix: list = [],
-                 xList: list = [],
+                 Matrix: list = None,
+                 xList: list = None,
                  iteraNum: int = 100,
                  threshold: float = 0.000001) -> None:
         '''

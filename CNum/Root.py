@@ -14,7 +14,6 @@ class Root():
         '''
         nothing!
         '''
-        pass
 
     def Bisection(self,
                   callback,

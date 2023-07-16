@@ -11,8 +11,8 @@ class FuncAppro ():
     This class contains a methods in order to construct an n-order polynomial.
     '''
     def __init__(self,
-                 xList: list = [],
-                 yList: list = []) -> None:
+                 xList: list = None,
+                 yList: list = None) -> None:
         '''
         xList: You need to provide a set of x-points.
         If you do not provide the vector here,
@@ -24,9 +24,11 @@ class FuncAppro ():
         setListY().\n
         The length of "xList" must be equal to "yList".
         '''
+
         self._xList = xList
         self._yList = yList
         self._len = len(xList)
+        self._augMat = []
 
     def setListX(self, xList) -> None:
         '''

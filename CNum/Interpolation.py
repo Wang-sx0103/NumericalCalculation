@@ -14,8 +14,8 @@ class Interpolation():
     calculate the value at X-point.
     '''
     def __init__(self,
-                 xList: list = [],
-                 yList: list = []) -> None:
+                 xList: list = None,
+                 yList: list = None) -> None:
         '''
         xList: You need to provide a set of x-points.
         If you do not provide the vector here,
@@ -30,6 +30,8 @@ class Interpolation():
         self._xList = xList
         self._yList = yList
         self._len = len(xList)
+        self._l = []
+        self._diffQuo = []
 
     def setKPoints(self, KnowPoints: list) -> None:
         '''
@@ -112,7 +114,7 @@ class Interpolation():
 
     def CubicSpline(self, x: float,
                     flag: int,
-                    endpointDer: list = []) -> float:
+                    endpointDer: list = None) -> float:
         '''
         Spline Interpolation Method.\n
         This method constructs the interpolation function

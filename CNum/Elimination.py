@@ -11,7 +11,7 @@ class Elimination():
     This class contains several common elimination methods
     for solving linear equations.
     '''
-    def __init__(self, augMat: list = []) -> None:
+    def __init__(self, augMat: list = None) -> None:
         '''
         augMat: You need to provide an augmented matrix in the constructor.
         If you do not provide the augmented matrix here,
@@ -22,6 +22,7 @@ class Elimination():
         self._len = len(self._augMatrix)
         self._xIndex = init.vectorIndex(self._len)
         self._xList = init.vector(self._len)
+        self._flag = 0
 
     def setAugMat(self, augMat) -> None:
         '''
@@ -58,10 +59,10 @@ class Elimination():
         self._xList[-1] = self._augMatrix[self._len-1][-1] / \
             self._augMatrix[self._len-1][self._len-1]
         for i in range(self._len-2, -1, -1):
-            sum = 0
+            temp_sum: float = 0
             for j in range(i + 1, self._len):
-                sum += self._augMatrix[i][j]*self._xList[j]
-            self._xList[i] = (self._augMatrix[i][-1] - sum) / \
+                temp_sum += self._augMatrix[i][j]*self._xList[j]
+            self._xList[i] = (self._augMatrix[i][-1] - temp_sum) / \
                 self._augMatrix[i][i]
         return self._xList
 
@@ -86,10 +87,10 @@ class Elimination():
         self._xList[-1] = self._augMatrix[self._len-1][-1] / \
             self._augMatrix[self._len-1][self._len-1]
         for i in range(self._len-2, -1, -1):
-            sum = 0
+            temp_sum = 0
             for j in range(i + 1, self._len):
-                sum += self._augMatrix[i][j]*self._xList[j]
-            self._xList[i] = (self._augMatrix[i][-1] - sum) / \
+                temp_sum += self._augMatrix[i][j]*self._xList[j]
+            self._xList[i] = (self._augMatrix[i][-1] - temp_sum) / \
                 self._augMatrix[i][i]
         return self._xList
 
@@ -115,10 +116,10 @@ class Elimination():
         self._xList[-1] = self._augMatrix[self._len-1][-1] / \
             self._augMatrix[self._len-1][self._len-1]
         for i in range(self._len-2, -1, -1):
-            sum = 0
+            temp_sum = 0
             for j in range(i + 1, self._len):
-                sum += self._augMatrix[i][j]*self._xList[j]
-            self._xList[i] = (self._augMatrix[i][-1] - sum) / \
+                temp_sum += self._augMatrix[i][j]*self._xList[j]
+            self._xList[i] = (self._augMatrix[i][-1] - temp_sum) / \
                 self._augMatrix[i][i]
         return self._changeXList()
 
@@ -131,13 +132,13 @@ class Elimination():
             self._augMatrix[maxColumn], self._augMatrix[column]
 
     def _allChangeOrder(self, column: int) -> None:
-        max = 0
+        temp_max: float = 0
         rowMax = 0
         listMax = 0
         for i in range(column, self._len):
             for j in range(column, self._len):
-                if abs(self._augMatrix[i][j]) > max:
-                    max = abs(self._augMatrix[i][j])
+                if abs(self._augMatrix[i][j]) > temp_max:
+                    temp_max = abs(self._augMatrix[i][j])
                     rowMax = i
                     listMax = j
                 temp = round(self._augMatrix[-1][-2])
