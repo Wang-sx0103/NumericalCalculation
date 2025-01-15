@@ -32,7 +32,7 @@ A library on **numerical analysis** and **numerical calculation**.
 
 ## Doc
 
-Please refer to the instruction [document](https://github.com/Wang-sx0103/NumericalCalculation/blob/main/doc/CNum1.0.1.md) for detailed usage.  
+Please refer to the instruction [document](https://wang-sx0103.github.io/NumericalCalculation/) for detailed usage.  
 
 ---------
 
